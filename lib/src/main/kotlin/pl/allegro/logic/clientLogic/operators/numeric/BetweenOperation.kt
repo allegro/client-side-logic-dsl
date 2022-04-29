@@ -1,7 +1,7 @@
 package pl.allegro.logic.clientLogic.operators.numeric
 
 import pl.allegro.logic.clientLogic.ClientLogicElement
-import pl.allegro.logic.clientLogic.ClientLogicMarker
+import pl.allegro.logic.clientLogic.annotations.ClientLogicMarker
 import pl.allegro.logic.clientLogic.NumberElement
 
 internal interface BetweenOperation {

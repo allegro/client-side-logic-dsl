@@ -1,7 +1,7 @@
 package pl.allegro.logic.clientLogic.operators.array
 
 import pl.allegro.logic.clientLogic.ClientLogicElement
-import pl.allegro.logic.clientLogic.ClientLogicMarker
+import pl.allegro.logic.clientLogic.annotations.ClientLogicMarker
 import pl.allegro.logic.clientLogic.ClientLogicOperator
 import pl.allegro.logic.clientLogic.BooleanElement
 import pl.allegro.logic.clientLogic.ClientRegistryDataElement

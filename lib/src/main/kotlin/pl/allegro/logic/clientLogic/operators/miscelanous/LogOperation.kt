@@ -1,7 +1,7 @@
 package pl.allegro.logic.clientLogic.operators.miscelanous
 
 import pl.allegro.logic.clientLogic.ClientLogicElement
-import pl.allegro.logic.clientLogic.ClientLogicMarker
+import pl.allegro.logic.clientLogic.annotations.ClientLogicMarker
 import pl.allegro.logic.clientLogic.operators.OperatorFactory
 
 internal interface LogOperation {

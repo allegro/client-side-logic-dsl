@@ -4,7 +4,7 @@ import pl.allegro.logic.clientLogic.ClientLogic.isNotEmpty
 import pl.allegro.logic.clientLogic.ClientLogic.isEmpty
 import pl.allegro.logic.clientLogic.ClientLogic.isEqual
 import pl.allegro.logic.clientLogic.ClientLogicElement
-import pl.allegro.logic.clientLogic.ClientLogicMarker
+import pl.allegro.logic.clientLogic.annotations.ClientLogicMarker
 import pl.allegro.logic.clientLogic.ClientLogicOperator
 import pl.allegro.logic.clientLogic.ClientRegistryDataElement
 import pl.allegro.logic.clientLogic.NumberElement

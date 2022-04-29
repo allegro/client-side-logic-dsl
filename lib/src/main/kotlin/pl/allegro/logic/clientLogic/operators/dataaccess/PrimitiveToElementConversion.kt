@@ -2,7 +2,7 @@ package pl.allegro.logic.clientLogic.operators.dataaccess
 
 import pl.allegro.logic.clientLogic.BooleanElement
 import pl.allegro.logic.clientLogic.ClientLogicElement
-import pl.allegro.logic.clientLogic.ClientLogicMarker
+import pl.allegro.logic.clientLogic.annotations.ClientLogicMarker
 import pl.allegro.logic.clientLogic.ClientRegistryDataElement
 import pl.allegro.logic.clientLogic.ListOfClientElements
 import pl.allegro.logic.clientLogic.NumberElement

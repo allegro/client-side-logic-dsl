@@ -1,5 +1,7 @@
 package pl.allegro.logic.clientLogic
 
+import pl.allegro.logic.clientLogic.annotations.ClientLogicMarker
+import pl.allegro.logic.clientLogic.annotations.ClientLogicOptIn
 import pl.allegro.logic.clientLogic.operators.arithmetic.DivisionOperation
 import pl.allegro.logic.clientLogic.operators.arithmetic.SubtractionOperation
 import pl.allegro.logic.clientLogic.operators.arithmetic.ModuloOperation
@@ -38,6 +40,7 @@ import pl.allegro.logic.clientLogic.operators.string.ConcatenateOperation
 import pl.allegro.logic.clientLogic.operators.string.ContainsStringOperation
 import pl.allegro.logic.clientLogic.operators.string.SubstringOperation
 
+@ClientLogicOptIn
 @ClientLogicMarker
 fun clientLogic(init: ClientLogic.() -> ClientLogicElement): ClientLogicElement {
     return ClientLogic.init()
