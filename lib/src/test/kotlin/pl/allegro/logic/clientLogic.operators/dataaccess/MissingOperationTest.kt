@@ -1,10 +1,9 @@
-package pl.allegro.mobile.dsl.mbox.clientLogic.operators.dataaccess
+package pl.allegro.logic.clientLogic.operators.dataaccess
 
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
-import pl.allegro.mobile.dsl.mbox.core.annotations.ClientLogicOptIn
-import pl.allegro.mobile.dsl.mbox.clientLogic.clientLogic
-
+import pl.allegro.logic.clientLogic.annotations.ClientLogicOptIn
+import pl.allegro.logic.clientLogic.clientLogic
 import pl.allegro.logic.clientLogic.operators.JsonLogicTestData
 import pl.allegro.logic.clientLogic.operators.assertSerializedExpressionMatchesExpected
 import pl.allegro.logic.clientLogic.operators.toJsonLogicTestArgumentsStream
