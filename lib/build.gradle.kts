@@ -5,6 +5,7 @@
  * For more details take a look at the 'Building Java & JVM projects' chapter in the Gradle
  * User Manual available at https://docs.gradle.org/7.4.2/userguide/building_java_projects.html
  */
+
 version = "0.1.1"
 apply(plugin = "java-library")
 
@@ -14,6 +15,7 @@ plugins {
 
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
+    id("io.gitlab.arturbosch.detekt").version("1.19.0")
 }
 
 repositories {
@@ -54,6 +56,26 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+val detektAll by tasks.registering(io.gitlab.arturbosch.detekt.Detekt::class) {
+    description = "Runs over whole code base without the starting overhead for each module."
+    parallel = true
+    buildUponDefaultConfig = true
+    setSource(files(projectDir))
+    config.setFrom(files("$projectDir/config/detekt/detekt.yml"))
+    include("**/*.kt")
+    exclude("**/*.kts")
+    exclude("resources/")
+    exclude("build/")
+    exclude("buildSrc/")
+    autoCorrect = true
+    reports {
+        html.required.set(true)
+        xml.required.set(true)
+        txt.required.set(true)
+        sarif.required.set(true)
+    }
 }
 
 //create a single Jar with all dependencies
