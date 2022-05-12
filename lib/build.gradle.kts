@@ -58,26 +58,6 @@ tasks.test {
     useJUnitPlatform()
 }
 
-val detektAll by tasks.registering(io.gitlab.arturbosch.detekt.Detekt::class) {
-    description = "Runs over whole code base without the starting overhead for each module."
-    parallel = true
-    buildUponDefaultConfig = true
-    setSource(files(projectDir))
-    config.setFrom(files("$projectDir/config/detekt/detekt.yml"))
-    include("**/*.kt")
-    exclude("**/*.kts")
-    exclude("resources/")
-    exclude("build/")
-    exclude("buildSrc/")
-    autoCorrect = true
-    reports {
-        html.required.set(true)
-        xml.required.set(true)
-        txt.required.set(true)
-        sarif.required.set(true)
-    }
-}
-
 //create a single Jar with all dependencies
 tasks.jar {
     manifest.attributes["Main-Class"] = "pl.allegro.logic.ClientLogicModule"
