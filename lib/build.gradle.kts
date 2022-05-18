@@ -62,13 +62,6 @@ java {
     targetCompatibility = JavaVersion.VERSION_11
 }
 
-detekt {
-    buildUponDefaultConfig = true
-    autoCorrect = true
-    ignoreFailures = false
-    config = files("/Users/justyna.wojsz/Desktop/client-logic-dsl/client-side-logic-dsl/config/detekt/detekt.yml")
-}
-
 tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
     reports {
         html.required.set(true) // observe findings in your browser with structure and code snippets
