@@ -3,14 +3,12 @@ package pl.allegro.logic.operators.numeric
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import pl.allegro.logic.ClientLogicOptIn
 import pl.allegro.logic.clientLogic
 import pl.allegro.logic.operators.JsonLogicTestData
 import pl.allegro.logic.operators.assertSerializedExpressionMatchesExpected
 import pl.allegro.logic.operators.toJsonLogicTestArgumentsStream
 import java.util.stream.Stream
 
-@OptIn(ClientLogicOptIn::class)
 class BetweenOrEqualOperationTest {
 
     @ParameterizedTest(name = "[{index}] BETWEEN OR EQUAL operator - {0}")

@@ -1,11 +1,9 @@
 package pl.allegro.logic.operators.misc
 
 import org.junit.jupiter.api.Test
-import pl.allegro.logic.ClientLogicOptIn
 import pl.allegro.logic.clientLogic
 import pl.allegro.logic.operators.isEqualAfterSerialization
 
-@OptIn(ClientLogicOptIn::class)
 class LogOperatorTest {
 
     @Test

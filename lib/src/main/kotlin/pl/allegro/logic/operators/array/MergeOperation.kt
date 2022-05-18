@@ -5,7 +5,6 @@ import pl.allegro.logic.ClientLogicElement
 import pl.allegro.logic.ClientLogicOperator
 import pl.allegro.logic.ClientLogicMarker
 
-
 internal interface MergeOperation {
     /**
      * Merge two arrays into one

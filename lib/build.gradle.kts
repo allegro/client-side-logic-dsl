@@ -11,6 +11,7 @@ apply(plugin = "java-library")
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version Versions.kotlin_plugin
+    id("io.gitlab.arturbosch.detekt").version("${Versions.detekt}")
 
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
@@ -43,7 +44,7 @@ dependencies {
 
     // Use the Kotlin test library.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
-    testImplementation("org.assertj:assertj-core:${Versions.asserttj_core}")
+    testImplementation("org.assertj:assertj-core:${Versions.assertj_core}")
 
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
@@ -54,6 +55,31 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+detekt {
+    buildUponDefaultConfig = true
+    autoCorrect = true
+    ignoreFailures = false
+    config = files("/Users/justyna.wojsz/Desktop/client-logic-dsl/client-side-logic-dsl/config/detekt/detekt.yml")
+}
+
+tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+    reports {
+        html.required.set(true) // observe findings in your browser with structure and code snippets
+        xml.required.set(true) // checkstyle like format mainly for integrations like Jenkins
+        txt.required.set(true) // similar to the console output, contains issue signature to manually edit baseline files
+        sarif.required.set(true) // standardized SARIF format (https://sarifweb.azurewebsites.net/) to support integrations with Github Code Scanning
+    }
+}
+
+tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+    jvmTarget = "1.8"
 }
 
 //Create a single Jar with all dependencies

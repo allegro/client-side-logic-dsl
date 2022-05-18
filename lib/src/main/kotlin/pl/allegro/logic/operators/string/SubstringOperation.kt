@@ -9,7 +9,6 @@ import pl.allegro.logic.ClientRegistryDataElement
 import pl.allegro.logic.NumberElement
 import pl.allegro.logic.ClientLogicMarker
 
-
 internal interface SubstringOperation {
 
     @ClientLogicMarker
