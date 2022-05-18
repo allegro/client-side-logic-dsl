@@ -76,7 +76,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: DetektHTMLReport
-          path: build/reports/detekt/detekt.html
+          path: lib/build/reports/detekt/detekt.html
 
       - name: Run reviewdog
         env:
