@@ -38,7 +38,6 @@ import pl.allegro.logic.operators.string.ConcatenateOperation
 import pl.allegro.logic.operators.string.ContainsStringOperation
 import pl.allegro.logic.operators.string.SubstringOperation
 
-@ClientLogicOptIn
 @ClientLogicMarker
 fun clientLogic(init: ClientLogic.() -> ClientLogicElement): ClientLogicElement {
     return ClientLogic.init()

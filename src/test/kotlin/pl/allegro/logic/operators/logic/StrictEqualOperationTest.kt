@@ -2,13 +2,11 @@ package pl.allegro.logic.operators.logic
 
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
-import pl.allegro.logic.ClientLogicOptIn
 import pl.allegro.logic.clientLogic
 import pl.allegro.logic.operators.JsonLogicTestData
 import pl.allegro.logic.operators.assertSerializedExpressionMatchesExpected
 import pl.allegro.logic.operators.toJsonLogicTestArgumentsStream
 
-@OptIn(ClientLogicOptIn::class)
 class StrictEqualOperationTest {
 
     @ParameterizedTest(name = "[{index}] STRICT EQUAL (===) operator - {0}")
