@@ -9,7 +9,8 @@ import pl.allegro.logic.operators.assertSerializedExpressionMatchesExpected
 import pl.allegro.logic.operators.toJsonLogicTestArgumentsStream
 
 @OptIn(ClientLogicOptIn::class)
-class DataAccessTest {
+class
+DataAccessTest {
 
     @ParameterizedTest(name = "[{index}] {0}")
     @MethodSource("testData")
