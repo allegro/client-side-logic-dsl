@@ -6,6 +6,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt").version(Versions.detekt)
 
     `java-library`
+    jacoco
 }
 
 repositories {
@@ -61,6 +62,27 @@ tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
         txt.required.set(true)
         sarif.required.set(true)
     }
+}
+
+tasks.test {
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    finalizedBy(tasks.jacocoTestCoverageVerification)
+}
+
+tasks.jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            element = "CLASS"
+            limit {
+                minimum = "0.7".toBigDecimal()
+            }
+        }
+    }
+    mustRunAfter(tasks.jacocoTestReport)
 }
 
 //Create a single Jar with all dependencies
