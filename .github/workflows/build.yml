@@ -50,6 +50,12 @@ jobs:
       - name: Unit tests
         run: ./gradlew test -x detekt
 
+      - name: "Upload coverage report"
+        uses: actions/upload-artifact@v3
+        with:
+          name: DetektHTMLReport
+          path: build/reports/jacoco/index.html
+
   detekt:
     name: Detekt
     runs-on: macos-latest
