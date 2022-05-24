@@ -37,7 +37,7 @@ private object ClientLogicToJsonMapper {
         jsonMapper.writeValueAsString(element)
 }
 
-fun String.stripWhitespace(): String {
+private fun String.stripWhitespace(): String {
     return this
         .replace(" ", "")
         .replace("\n", "")
