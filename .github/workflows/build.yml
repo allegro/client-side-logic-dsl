@@ -53,7 +53,7 @@ jobs:
       - name: "Upload coverage report"
         uses: actions/upload-artifact@v3
         with:
-          name: DetektHTMLReport
+          name: Coverage report
           path: build/reports/jacoco/index.html
 
   detekt:
