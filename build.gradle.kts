@@ -67,19 +67,6 @@ tasks.test {
 
 tasks.jacocoTestReport {
     dependsOn(tasks.test)
-    finalizedBy(tasks.jacocoTestCoverageVerification)
-}
-
-tasks.jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            element = "CLASS"
-            limit {
-                minimum = "0.7".toBigDecimal()
-            }
-        }
-    }
-    mustRunAfter(tasks.jacocoTestReport)
 }
 
 //Create a single Jar with all dependencies
