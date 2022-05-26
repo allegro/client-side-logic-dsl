@@ -1,0 +1,91 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build library
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: 11
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Build project
+        run: ./gradlew build -x detekt -x test
+
+  run_tests:
+    name: Run tests
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: 11
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Unit tests
+        run: ./gradlew test -x detekt
+
+      - name: "Upload coverage report"
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: CoverageHTMLReport
+          path: build/reports/jacoco/test/
+
+  detekt:
+    name: Detekt
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: 11
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Set up reviewdog
+        uses: reviewdog/action-setup@v1
+
+      - name: Run check
+        run: ./gradlew detekt
+
+      - name: "Upload report"
+        uses: actions/upload-artifact@v3
+        with:
+          name: DetektHTMLReport
+          path: build/reports/detekt/detekt.html
+
+      - name: Run reviewdog
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: cat build/reports/detekt/detekt.xml | reviewdog -f=checkstyle -reporter=github-pr-review

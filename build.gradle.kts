@@ -6,6 +6,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt").version(Versions.detekt)
 
     `java-library`
+    jacoco
 }
 
 repositories {
@@ -33,10 +34,6 @@ dependencies {
     api("org.apache.commons:commons-math3:${Versions.math}")
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
-
 java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
@@ -57,6 +54,15 @@ tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
         txt.required.set(true)
         sarif.required.set(true)
     }
+}
+
+tasks.test {
+    useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
 }
 
 //Create a single Jar with all dependencies
