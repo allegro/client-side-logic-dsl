@@ -1,0 +1,59 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      next_version:
+        description: "Next version (if empty - PATCH version will be incremented automatically). Please use semantic versioning, format: 0.0.1"
+        required: false
+
+jobs:
+  bump_version:
+    name: Bump version
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.bump.outputs.next_tag }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get next tag
+        id: 'bump'
+        uses: allegro-actions/next-version@v1
+        with:
+          force: ${{ github.event.inputs.next_version }}
+
+      - name: Push new tag on master
+        if: github.ref == 'refs/heads/master'
+        uses: allegro-actions/create-tag@v1
+        with:
+          tag: ${{ steps.bump.outputs.next_tag }}
+          current-tag: ${{ steps.bump.outputs.current_tag }}
+
+  publish_to_maven:
+    name: Publish to maven
+    runs-on: ubuntu-latest
+    needs: [bump_version]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: "${{ needs.bump_version.outputs.tag }}"
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: 11
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v3
+
+      - name: Publish to maven central
+        run: ./gradlew publishJvmPublicationToSonatypeRepository closeAndReleaseSonatypeStagingRepository --scan
+        env:
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PRIVATE_KEY_PASSWORD: ${{ secrets.GPG_PRIVATE_KEY_PASSWORD }}
