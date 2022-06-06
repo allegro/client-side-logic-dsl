@@ -3,7 +3,7 @@ on: pull_request
 
 jobs:
   detekt:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3

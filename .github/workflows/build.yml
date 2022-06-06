@@ -12,7 +12,7 @@ concurrency:
 jobs:
   build:
     name: Build library
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -36,7 +36,7 @@ jobs:
 
   run_tests:
     name: Run tests
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
