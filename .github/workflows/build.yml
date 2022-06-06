@@ -32,7 +32,7 @@ jobs:
         run: ./gradlew detekt
 
       - name: Build project
-        run: ./gradlew build
+        run: ./gradlew build -x detekt -x test
 
   run_tests:
     name: Run tests
