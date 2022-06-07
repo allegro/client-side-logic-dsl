@@ -71,9 +71,14 @@ tasks.jacocoTestReport {
     dependsOn(tasks.test)
 }
 
+val javadocJar: TaskProvider<Jar> = tasks.register("javadocJar", Jar::class.java) {
+    archiveClassifier.set("javadoc")
+}
+
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
+            artifact(javadocJar)
             from(components["java"])
 
             pom {
