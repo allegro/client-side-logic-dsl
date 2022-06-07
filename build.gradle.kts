@@ -30,16 +30,12 @@ dependencies {
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-    implementation("com.google.guava:guava:${Versions.guava}")
-    implementation("org.junit.jupiter:junit-jupiter:${Versions.junit_jupiter}")
-    implementation("com.navelplace:jsemver:${Versions.jsemver}")
     implementation("com.fasterxml.jackson.core:jackson-databind:${Versions.jackson_databind}")
     implementation("com.fasterxml.jackson.core:jackson-core:${Versions.jackson_core}")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
     testImplementation("org.assertj:assertj-core:${Versions.assertj_core}")
-
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    testImplementation("org.junit.jupiter:junit-jupiter:${Versions.junit_jupiter}")
 
     api("org.apache.commons:commons-math3:${Versions.math}")
 }

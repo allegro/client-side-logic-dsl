@@ -1,7 +1,6 @@
 package pl.allegro.logic.operators
 
 import com.fasterxml.jackson.databind.json.JsonMapper
-import com.navelplace.jsemver.regex.stripWhitespace
 import org.assertj.core.api.Assertions.assertThat
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.params.provider.Arguments
@@ -36,4 +35,11 @@ private object ClientLogicToJsonMapper {
 
     fun clientLogicExpressionToJson(element: ClientLogicElement): String =
         jsonMapper.writeValueAsString(element)
+}
+
+private fun String.stripWhitespace(): String {
+    return this
+        .replace(" ", "")
+        .replace("\n", "")
+        .replace("\t", "")
 }
