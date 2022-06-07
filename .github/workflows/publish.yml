@@ -24,6 +24,11 @@ jobs:
         with:
           force: ${{ github.event.inputs.next_version }}
 
+      - name: Setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
       - name: Push new tag on master
         uses: allegro-actions/create-tag@v1
         with:
