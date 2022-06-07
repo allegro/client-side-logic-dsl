@@ -25,7 +25,6 @@ jobs:
           force: ${{ github.event.inputs.next_version }}
 
       - name: Push new tag on master
-        if: github.ref == 'refs/heads/master'
         uses: allegro-actions/create-tag@v1
         with:
           tag: ${{ steps.bump.outputs.next_tag }}
