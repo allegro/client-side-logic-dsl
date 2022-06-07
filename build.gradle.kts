@@ -1,13 +1,19 @@
-version = "0.1.1"
-apply(plugin = "java-library")
-
 plugins {
     id("org.jetbrains.kotlin.jvm") version Versions.kotlin_plugin
     id("io.gitlab.arturbosch.detekt").version(Versions.detekt)
+    id("io.github.gradle-nexus.publish-plugin") version Versions.nexus
+    id("pl.allegro.tech.build.axion-release") version "1.13.6"
 
     `java-library`
     jacoco
+    `maven-publish`
+    signing
 }
+
+apply(from = "versionConfig.gradle")
+
+group = LibConfig.group
+version = scmVersion.version
 
 repositories {
     mavenCentral()
@@ -63,6 +69,58 @@ tasks.test {
 
 tasks.jacocoTestReport {
     dependsOn(tasks.test)
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+
+            pom {
+                name.set(LibConfig.name)
+                description.set("Kotlin JsonLogic interpreter")
+                url.set(LibConfig.repositoryUrl)
+                inceptionYear.set("2022")
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("allegro")
+                        name.set("opensource@allegro.pl")
+                    }
+                }
+                scm {
+                    connection.set("scm:svn:${LibConfig.repositoryUrl}")
+                    developerConnection.set("scm:git@github.com:allegro/client-side-logic-dsl.git")
+                    url.set(LibConfig.repositoryUrl)
+                }
+            }
+        }
+    }
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            username.set(System.getenv("SONATYPE_USERNAME"))
+            password.set(System.getenv("SONATYPE_PASSWORD"))
+        }
+    }
+}
+
+System.getenv("GPG_KEY_ID")?.let { gpgKeyId ->
+    signing {
+        useInMemoryPgpKeys(
+            gpgKeyId,
+            System.getenv("GPG_PRIVATE_KEY"),
+            System.getenv("GPG_PRIVATE_KEY_PASSWORD")
+        )
+        sign(publishing.publications)
+    }
 }
 
 //Create a single Jar with all dependencies
