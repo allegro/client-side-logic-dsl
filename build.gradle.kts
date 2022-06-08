@@ -2,7 +2,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version Versions.kotlin_plugin
     id("io.gitlab.arturbosch.detekt").version(Versions.detekt)
     id("io.github.gradle-nexus.publish-plugin") version Versions.nexus
-    id("pl.allegro.tech.build.axion-release") version "1.13.6"
+    id("pl.allegro.tech.build.axion-release") version Versions.axion
 
     `java-library`
     jacoco
