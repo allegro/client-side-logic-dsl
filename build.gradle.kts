@@ -41,8 +41,11 @@ dependencies {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    withSourcesJar()
+    withJavadocJar()
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
 }
 
 detekt {
@@ -71,14 +74,9 @@ tasks.jacocoTestReport {
     dependsOn(tasks.test)
 }
 
-val javadocJar: TaskProvider<Jar> = tasks.register("javadocJar", Jar::class.java) {
-    archiveClassifier.set("javadoc")
-}
-
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
-            artifact(javadocJar)
             from(components["java"])
 
             pom {
