@@ -21,7 +21,7 @@ class StrictEqualOperationTest {
             JsonLogicTestData(
                 testCase = "key, value",
                 expression = clientLogic {
-                    registryKey("key1").strictEqual(true)
+                    registryKey("key1").isStrictEqual(true)
                 },
                 expected = """{ "===" : [{"var":"key1"}, true]}"""
             ),
@@ -29,14 +29,14 @@ class StrictEqualOperationTest {
                 testCase = "value, expression",
                 expression = clientLogic {
                     val ifExpression = If(registryKey("key1")) { "a" }.Else { "b" }
-                    ifExpression.strictEqual("a")
+                    ifExpression.isStrictEqual("a")
                 },
                 expected = """{"===":[{"if":[{"var":"key1"},"a","b"]}, "a"]}"""
             ),
             JsonLogicTestData(
                 testCase = "key, number",
                 expression = clientLogic {
-                    registryKey("A").strictEqual(2.22)
+                    registryKey("A").isStrictEqual(2.22)
                 },
                 expected = """{"===":[{"var":"A"},2.22]}"""
             ),

@@ -9,16 +9,16 @@ import pl.allegro.logic.StringElement
 
 internal interface StrictNotEqualOperation {
     @ClientLogicMarker
-    fun ClientLogicElement.strictNotEqual(other: ClientLogicElement) = StrictNotEqualOperatorFactory().create(this, other)
+    fun ClientLogicElement.isStrictNotEqual(other: ClientLogicElement) = StrictNotEqualOperatorFactory().create(this, other)
 
     @ClientLogicMarker
-    fun ClientLogicElement.strictNotEqual(other: String) = strictNotEqual(StringElement(other))
+    fun ClientLogicElement.isStrictNotEqual(other: String) = isStrictNotEqual(StringElement(other))
 
     @ClientLogicMarker
-    fun ClientLogicElement.strictNotEqual(other: Number) = strictNotEqual(NumberElement(other))
+    fun ClientLogicElement.isStrictNotEqual(other: Number) = isStrictNotEqual(NumberElement(other))
 
     @ClientLogicMarker
-    fun ClientLogicElement.strictNotEqual(other: Boolean) = strictNotEqual(BooleanElement(other))
+    fun ClientLogicElement.isStrictNotEqual(other: Boolean) = isStrictNotEqual(BooleanElement(other))
 }
 
 private class StrictNotEqualOperatorFactory : OperatorFactory("!==")

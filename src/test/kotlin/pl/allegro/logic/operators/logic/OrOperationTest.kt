@@ -28,26 +28,17 @@ class OrOperationTest {
             JsonLogicTestData(
                 testCase = "find first truthy element (4 params)",
                 expression = clientLogic {
-                    firstTruthyElementOrLastElement(
-                        registryKey("key1"),
-                        registryKey("key2"),
-                        registryKey("key3"),
-                        registryKey("key4")
-                    )
+                    registryKey("key1")
+                        .or(registryKey("key2"))
+                        .or(registryKey("key3"))
+                        .or(registryKey("key4"))
                 },
                 expected = """{ "or" : [{"var":"key1"}, {"var":"key2"}, {"var":"key3"}, {"var":"key4"}]}"""
             ),
             JsonLogicTestData(
-                testCase = "find first truthy element (1 param)",
-                expression = clientLogic {
-                    firstTruthyElementOrLastElement(registryKey("key1"))
-                },
-                expected = """{ "or" : {"var":"key1"}}"""
-            ),
-            JsonLogicTestData(
                 testCase = "find first truthy element - array",
                 expression = clientLogic {
-                    firstTruthyElementOrLastElement(
+                    or(
                         listOfElements(
                             registryKey("key1"),
                             registryKey("key2"),
