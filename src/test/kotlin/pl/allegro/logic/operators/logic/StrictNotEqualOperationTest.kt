@@ -21,21 +21,21 @@ class StrictNotEqualOperationTest {
             JsonLogicTestData(
                 testCase = "key, string",
                 expression = clientLogic {
-                    registryKey("key1").strictNotEqual("false")
+                    registryKey("key1").isStrictNotEqual("false")
                 },
                 expected = """{ "!==" : [{"var":"key1"}, "false"]}"""
             ),
             JsonLogicTestData(
                 testCase = "key, boolean",
                 expression = clientLogic {
-                    registryKey("key1").strictNotEqual(false)
+                    registryKey("key1").isStrictNotEqual(false)
                 },
                 expected = """{ "!==" : [{"var":"key1"}, false]}"""
             ),
             JsonLogicTestData(
                 testCase = "key, int",
                 expression = clientLogic {
-                    registryKey("key1").strictNotEqual(2)
+                    registryKey("key1").isStrictNotEqual(2)
                 },
                 expected = """{ "!==" : [{"var":"key1"}, 2]}"""
             ),
