@@ -32,24 +32,22 @@ class AndOperationTest {
                         .and(registryKey("key2"))
                         .and(registryKey("key3"))
                 },
-                expected = """{"and":[{"and":[{"var":"key1"},{"var":"key2"}]},{"var":"key3"}]}"""
+                expected = """{"and":[{"var":"key1"},{"var":"key2"},{"var":"key3"}]}"""
             ),
             JsonLogicTestData(
                 testCase = "find first falsy element",
                 expression = clientLogic {
-                    firstFalsyElementOrLastElement(registryKey("key1"), registryKey("key2"), registryKey("key3"))
+                    registryKey("key1").and(registryKey("key2")).and(registryKey("key3"))
                 },
                 expected = """{ "and" : [{"var":"key1"}, {"var":"key2"}, {"var":"key3"}]}"""
             ),
             JsonLogicTestData(
                 testCase = "find first falsy element - keys and expression",
                 expression = clientLogic {
-                    firstFalsyElementOrLastElement(
-                        registryKey("key1"),
-                        registryKey("key2"),
-                        registryKey("key3"),
-                        2.plus(registryKey("test"))
-                    )
+                    registryKey("key1")
+                        .and(registryKey("key2"))
+                        .and(registryKey("key3"))
+                        .and(2.plus(registryKey("test")))
                 },
                 expected = """{"and":[{"var":"key1"},{"var":"key2"},{"var":"key3"},{"+":[2,{"var":"test"}]}]}"""
             ),
@@ -62,7 +60,7 @@ class AndOperationTest {
                         registryKey("key3"),
                         2.plus(registryKey("test"))
                     )
-                    firstFalsyElementOrLastElement(elements)
+                    and(elements)
                 },
                 expected = """{"and":[{"var":"key1"},{"var":"key2"},{"var":"key3"},{"+":[2,{"var":"test"}]}]}"""
             ),
