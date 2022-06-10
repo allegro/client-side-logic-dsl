@@ -1,5 +1,5 @@
 object LibConfig {
-    const val group = "pl.allegro"
+    const val group = "pl.allegro.mobile"
     const val repositoryUrl = "https://github.com/allegro/client-side-logic-dsl"
     const val name = "ClientSideLogicDSL"
     const val jvmTarget = "11"
