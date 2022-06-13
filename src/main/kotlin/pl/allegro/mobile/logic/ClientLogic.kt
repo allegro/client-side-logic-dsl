@@ -13,6 +13,7 @@ import pl.allegro.mobile.logic.operators.array.MapOperation
 import pl.allegro.mobile.logic.operators.array.MergeOperation
 import pl.allegro.mobile.logic.operators.array.NoneOperation
 import pl.allegro.mobile.logic.operators.array.ReduceOperation
+import pl.allegro.mobile.logic.operators.array.SizeOperation
 import pl.allegro.mobile.logic.operators.array.SomeOperation
 import pl.allegro.mobile.logic.operators.dataaccess.MissingOperation
 import pl.allegro.mobile.logic.operators.dataaccess.MissingSomeOperation
@@ -36,6 +37,7 @@ import pl.allegro.mobile.logic.operators.numeric.MaxOperation
 import pl.allegro.mobile.logic.operators.numeric.MinOperation
 import pl.allegro.mobile.logic.operators.string.ConcatenateOperation
 import pl.allegro.mobile.logic.operators.string.ContainsStringOperation
+import pl.allegro.mobile.logic.operators.string.LengthOperation
 import pl.allegro.mobile.logic.operators.string.SubstringOperation
 
 @ClientLogicMarker
@@ -62,6 +64,7 @@ object ClientLogic :
     NoneOperation,
     ReduceOperation,
     SomeOperation,
+    SizeOperation,
 
     // data access
     MissingOperation,
@@ -92,6 +95,7 @@ object ClientLogic :
     ConcatenateOperation,
     ContainsStringOperation,
     SubstringOperation,
+    LengthOperation,
 
     // misc
     LogOperation
