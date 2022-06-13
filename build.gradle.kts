@@ -2,7 +2,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version Versions.kotlin_plugin
     id("io.gitlab.arturbosch.detekt").version(Versions.detekt)
     id("io.github.gradle-nexus.publish-plugin") version Versions.nexus
-    id("pl.allegro.tech.build.axion-release") version "1.13.6"
+    id("pl.allegro.tech.build.axion-release") version Versions.axion
 
     `java-library`
     jacoco
@@ -21,28 +21,26 @@ repositories {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = LibConfig.jvmTarget
     }
 }
 
 dependencies {
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
+    implementation(Libs.Jackson.core)
+    implementation(Libs.Jackson.databind)
+    implementation(Libs.ApacheCommons.math3)
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-
-    implementation("com.fasterxml.jackson.core:jackson-databind:${Versions.jackson_databind}")
-    implementation("com.fasterxml.jackson.core:jackson-core:${Versions.jackson_core}")
-
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
-    testImplementation("org.assertj:assertj-core:${Versions.assertj_core}")
-    testImplementation("org.junit.jupiter:junit-jupiter:${Versions.junit_jupiter}")
-
-    api("org.apache.commons:commons-math3:${Versions.math}")
+    testImplementation(Libs.AssertJ.core)
+    testImplementation(Libs.Junit.jupiter)
+    testImplementation(Libs.Kotlin.junitTest)
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    withSourcesJar()
+    withJavadocJar()
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
 }
 
 detekt {
@@ -121,15 +119,4 @@ System.getenv("GPG_KEY_ID")?.let { gpgKeyId ->
         )
         sign(publishing.publications)
     }
-}
-
-//Create a single Jar with all dependencies
-tasks.jar {
-    manifest.attributes["Main-Class"] = "pl.allegro.logic.ClientLogicModule"
-    val dependencies = configurations
-        .runtimeClasspath
-        .get()
-        .map(::zipTree)
-    from(dependencies)
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
