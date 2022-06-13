@@ -23,10 +23,12 @@ internal interface SubstringOperation {
     fun ClientRegistryDataElement.endsWith(text: String) =
         substring(this, startFromIndex = (-1 * text.length)).isEqual(text)
 
+    // TODO remove after adding DSL for length operator
     @ClientLogicMarker
     fun ClientRegistryDataElement.lengthIsAtLeast(minLength: Int) =
         substring(this, startFromIndex = minLength - 1).isNotEmpty()
 
+    // TODO remove after adding DSL for length operator
     @ClientLogicMarker
     fun ClientRegistryDataElement.lengthIsAtMost(maxLength: Int) =
         substring(this, startFromIndex = maxLength).isEmpty()
