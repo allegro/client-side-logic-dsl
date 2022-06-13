@@ -5,7 +5,7 @@ import pl.allegro.mobile.logic.NumberElement
 import pl.allegro.mobile.logic.ClientLogicMarker
 import pl.allegro.mobile.logic.operators.OperatorFactory
 
-internal interface GreaterOrEqualThanOperation {
+internal interface GreaterOrEqualOperation {
     @ClientLogicMarker
     fun ClientLogicElement.isGreaterOrEqual(other: ClientLogicElement) = GreaterOrEqualOperatorFactory().create(this, other)
 

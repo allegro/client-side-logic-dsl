@@ -5,16 +5,16 @@ import pl.allegro.mobile.logic.NumberElement
 import pl.allegro.mobile.logic.ClientLogicMarker
 import pl.allegro.mobile.logic.operators.OperatorFactory
 
-internal interface LessOrEqualThanOperation {
+internal interface LessOrEqualOperation {
 
     @ClientLogicMarker
-    fun ClientLogicElement.isLessOrEqualThan(other: ClientLogicElement) = LessOrEqualThanOperatorFactory().create(this, other)
+    fun ClientLogicElement.isLessOrEqual(other: ClientLogicElement) = LessOrEqualThanOperatorFactory().create(this, other)
 
     @ClientLogicMarker
-    fun ClientLogicElement.isLessOrEqualThan(other: Number) = isLessOrEqualThan(NumberElement(other))
+    fun ClientLogicElement.isLessOrEqual(other: Number) = isLessOrEqual(NumberElement(other))
 
     @ClientLogicMarker
-    fun Int.isLessOrEqualThan(other: ClientLogicElement) = NumberElement(this).isLessOrEqualThan(other)
+    fun Int.isLessOrEqual(other: ClientLogicElement) = NumberElement(this).isLessOrEqual(other)
 }
 
 internal class LessOrEqualThanOperatorFactory : OperatorFactory("<=")
