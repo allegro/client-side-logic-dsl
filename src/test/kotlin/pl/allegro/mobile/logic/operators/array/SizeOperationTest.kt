@@ -11,7 +11,7 @@ class SizeOperationTest {
 
     @ParameterizedTest(name = "[{index}] SIZE operator - {0}")
     @MethodSource("testData")
-    fun `should map array operations to json`(testCaseName: String, jsonLogicTestData: JsonLogicTestData) {
+    fun `should map size operation to json`(testCaseName: String, jsonLogicTestData: JsonLogicTestData) {
         jsonLogicTestData.assertSerializedExpressionMatchesExpected()
     }
 
