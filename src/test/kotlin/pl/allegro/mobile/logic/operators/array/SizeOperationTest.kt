@@ -26,7 +26,7 @@ class SizeOperationTest {
                 expected = """{"size":[{"var":"flag0"},{"var":"flag2"}]}"""
             ),
             JsonLogicTestData(
-                testCase = "size of list of elements", //
+                testCase = "size of list of elements", 
                 expression = clientLogic {
                     sizeOf(listOfElements(registryKey("flag0"), registryKey("flag2")))
                 },
