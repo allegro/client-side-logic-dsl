@@ -10,7 +10,7 @@ internal interface UppercaseOperation {
      * @receiver Character sequence or client side operation that returns string
      * @param sequence client side data or operation results which will be injected to string
      * @return uppercase operator, evaluated client side.
-     * Operator returns a copy of this string converted to upper case.
+     * Operator returns this string converted to upper case.
      * @see: UppercaseOperationTest
      */
     @ClientLogicMarker
@@ -20,4 +20,4 @@ internal interface UppercaseOperation {
     fun ClientLogicElement.toUppercase() = UppercaseOperatorFactory().create(this)
 }
 
-private class UppercaseOperatorFactory : OperatorFactory("lowercase")
+private class UppercaseOperatorFactory : OperatorFactory("uppercase")
