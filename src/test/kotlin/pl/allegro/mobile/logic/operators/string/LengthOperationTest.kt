@@ -13,7 +13,7 @@ class LengthOperationTest {
 
     @ParameterizedTest(name = "[{index}] LENGTH operator - {0}")
     @MethodSource("testData")
-    fun `should map concat operations to json`(testCaseName: String, jsonLogicTestData: JsonLogicTestData) {
+    fun `should map length operation to json`(testCaseName: String, jsonLogicTestData: JsonLogicTestData) {
         jsonLogicTestData.assertSerializedExpressionMatchesExpected()
     }
 
