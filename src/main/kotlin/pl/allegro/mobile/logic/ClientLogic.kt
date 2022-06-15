@@ -34,9 +34,12 @@ import pl.allegro.mobile.logic.operators.numeric.LessOrEqualThanOperation
 import pl.allegro.mobile.logic.operators.numeric.LessThanOperation
 import pl.allegro.mobile.logic.operators.numeric.MaxOperation
 import pl.allegro.mobile.logic.operators.numeric.MinOperation
+import pl.allegro.mobile.logic.operators.string.CapitalizeOperation
 import pl.allegro.mobile.logic.operators.string.ConcatenateOperation
 import pl.allegro.mobile.logic.operators.string.ContainsStringOperation
+import pl.allegro.mobile.logic.operators.string.LowercaseOperation
 import pl.allegro.mobile.logic.operators.string.SubstringOperation
+import pl.allegro.mobile.logic.operators.string.UppercaseOperation
 
 @ClientLogicMarker
 fun clientLogic(init: ClientLogic.() -> ClientLogicElement): ClientLogicElement {
@@ -92,6 +95,9 @@ object ClientLogic :
     ConcatenateOperation,
     ContainsStringOperation,
     SubstringOperation,
+    LowercaseOperation,
+    UppercaseOperation,
+    CapitalizeOperation,
 
     // misc
     LogOperation
