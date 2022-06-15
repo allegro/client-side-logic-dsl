@@ -29,8 +29,8 @@ import pl.allegro.mobile.logic.operators.logic.StrictNotEqualOperation
 import pl.allegro.mobile.logic.operators.miscelanous.LogOperation
 import pl.allegro.mobile.logic.operators.numeric.BetweenOperation
 import pl.allegro.mobile.logic.operators.numeric.BetweenOrEqualOperation
-import pl.allegro.mobile.logic.operators.numeric.GreaterOrEqualThanOperation
-import pl.allegro.mobile.logic.operators.numeric.LessOrEqualThanOperation
+import pl.allegro.mobile.logic.operators.numeric.GreaterOrEqualOperation
+import pl.allegro.mobile.logic.operators.numeric.LessOrEqualOperation
 import pl.allegro.mobile.logic.operators.numeric.LessThanOperation
 import pl.allegro.mobile.logic.operators.numeric.MaxOperation
 import pl.allegro.mobile.logic.operators.numeric.MinOperation
@@ -81,9 +81,9 @@ object ClientLogic :
     // numeric
     BetweenOperation,
     BetweenOrEqualOperation,
-    GreaterOrEqualThanOperation,
+    GreaterOrEqualOperation,
     GreaterThanOperation,
-    LessOrEqualThanOperation,
+    LessOrEqualOperation,
     LessThanOperation,
     MaxOperation,
     MinOperation,
