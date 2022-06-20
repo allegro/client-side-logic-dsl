@@ -37,6 +37,7 @@ import pl.allegro.mobile.logic.operators.numeric.MinOperation
 import pl.allegro.mobile.logic.operators.string.ConcatenateOperation
 import pl.allegro.mobile.logic.operators.string.ContainsStringOperation
 import pl.allegro.mobile.logic.operators.string.SubstringOperation
+import pl.allegro.mobile.logic.operators.string.TrimOperation
 
 @ClientLogicMarker
 fun clientLogic(init: ClientLogic.() -> ClientLogicElement): ClientLogicElement {
@@ -92,6 +93,7 @@ object ClientLogic :
     ConcatenateOperation,
     ContainsStringOperation,
     SubstringOperation,
+    TrimOperation,
 
     // misc
     LogOperation
