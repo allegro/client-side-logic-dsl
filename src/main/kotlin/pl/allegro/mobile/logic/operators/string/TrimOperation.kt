@@ -7,28 +7,30 @@ import pl.allegro.mobile.logic.StringElement
 
 internal interface TrimOperation {
     /**
-     * Converts the character sequence to lower case.
+     * Removes based on trim mode given character from the beginning and/or the end of the string.
      * @param sequence client side data or operation results which will be injected to string
-     * @return lowercase operator, evaluated client side.
-     * Operator returns a copy of this string converted to lower case.
-     * @see: LowercaseOperationTest
+     * @param character to remove from the given end of sequence
+     * @param trimMode indicates direction of trimming
+     * @return trim operator, evaluated client side.
+     * Operator returns a copy of this string trimmed with given character
+     * @see: TrimOperationTest
      */
     @ClientLogicMarker
-    fun trim(sequence: ClientLogicElement, character: Char?, trimMode: TrimMode = TrimMode.BOTH_ENDS) = TrimOperatorFactory().create(sequence, character, trimMode)
+    fun trim(sequence: ClientLogicElement, character: Char = ' ', trimMode: TrimMode = TrimMode.BOTH_ENDS) = TrimOperatorFactory().create(sequence, character, trimMode)
 
     @ClientLogicMarker
-    fun ClientLogicElement.trimmed(character: Char?, trimMode: TrimMode = TrimMode.BOTH_ENDS) = TrimOperatorFactory().create(this, character, trimMode)
+    fun ClientLogicElement.trimmed(character: Char = ' ', trimMode: TrimMode = TrimMode.BOTH_ENDS) = TrimOperatorFactory().create(this, character, trimMode)
 }
 
 private class TrimOperatorFactory {
 
     fun create(
         element: ClientLogicElement,
-        character: Char?,
+        character: Char,
         trimMode: TrimMode
     ) = ClientLogicOperator.Builder("trim")
         .add(element)
-        .add(StringElement(character?.toString() ?: " "))
+        .add(StringElement(character.toString()))
         .add(StringElement(trimMode.mode))
         .build()
 }
