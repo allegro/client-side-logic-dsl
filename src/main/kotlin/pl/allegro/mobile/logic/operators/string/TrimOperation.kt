@@ -8,6 +8,7 @@ import pl.allegro.mobile.logic.StringElement
 internal interface TrimOperation {
     /**
      * Removes based on trim mode given character from the beginning and/or the end of the string.
+     * @receiver Character sequence or client side operation that returns string
      * @param sequence client side data or operation results which will be injected to string
      * @param character to remove from the given end of sequence
      * @param trimMode indicates direction of trimming
