@@ -90,8 +90,6 @@ class TrimOperationTest {
                     },
                     expected = """{"trim":[{"var":"key"}," ","end"]}"""
                 ),
-
-
                 JsonLogicTestData(
                     testCase = "from key, character specified, default mode",
                     expression = clientLogic {
