@@ -91,74 +91,74 @@ class TrimOperationTest {
                     expected = """{"trim":[{"var":"key"}," ","end"]}"""
                 ),
                 JsonLogicTestData(
-                    testCase = "from key, character specified, default mode",
+                    testCase = "from cat operation, character specified, default mode",
                     expression = clientLogic {
                         trim(concat("Delicious %s", registryKey("test")), '/')
                     },
-                    expected = """{"trim":[{"var":"key"},"/","bothEnds"]}"""
+                    expected = """{"trim":[{"cat":["Delicious",{"var":"test"}]},"/","bothEnds"]}"""
                 ),
                 JsonLogicTestData(
-                    testCase = "from key, default character, default mode",
+                    testCase = "from substr operation, default character, default mode",
                     expression = clientLogic {
                         trim(substring(registryKey("key"), startFromIndex = 2, numOfCharacters = 4))
                     },
-                    expected = """{"trim":[{"var":"key"}," ","bothEnds"]}"""
+                    expected = """{"trim":[{"substr":[{"var":"key"},2,4]},"","bothEnds"]}"""
                 ),
                 JsonLogicTestData(
-                    testCase = "extension from key, specified character, default mode",
+                    testCase = "extension from cat operation, specified character, default mode",
                     expression = clientLogic {
                         concat("Delicious %s", registryKey("test")).trimmed('/')
                     },
-                    expected = """{"trim":[{"var":"key"},"/","bothEnds"]}"""
+                    expected = """{"trim":[{"cat":["Delicious",{"var":"test"}]},"/","bothEnds"]}"""
                 ),
                 JsonLogicTestData(
-                    testCase = "extension from key, default character, default mode",
+                    testCase = "extension from substr operation, default character, default mode",
                     expression = clientLogic {
                         substring(registryKey("key"), startFromIndex = 2, numOfCharacters = 4).trimmed()
                     },
-                    expected = """{"trim":[{"var":"key"}," ","bothEnds"]}"""
+                    expected = """{"trim":[{"substr":[{"var":"key"},2,4]},"","bothEnds"]}"""
                 ),
                 JsonLogicTestData(
-                    testCase = "extension from key, default character, start mode",
+                    testCase = "extension from capitalize operation, default character, start mode",
                     expression = clientLogic {
                         registryKey("someString").capitalized().trimmed(trimMode = TrimMode.START)
                     },
-                    expected = """{"trim":[{"var":"key"}," ","start"]}"""
+                    expected = """{"trim":[{"capitalize":{"var":"someString"}},"","start"]}"""
                 ),
                 JsonLogicTestData(
-                    testCase = "extension from key, default character, bothEnds mode",
+                    testCase = "extension from lowercase operation, default character, bothEnds mode",
                     expression = clientLogic {
-                        lowercase(registryKey("someString0")).trimmed(trimMode = TrimMode.BOTH_ENDS)
+                        lowercase(registryKey("someString")).trimmed(trimMode = TrimMode.BOTH_ENDS)
                     },
-                    expected = """{"trim":[{"var":"key"}," ","bothEnds"]}"""
+                    expected = """{"trim":[{"lowercase":{"var":"someString"}},"","bothEnds"]}"""
                 ),
                 JsonLogicTestData(
-                    testCase = "extension from key, default character, end mode",
+                    testCase = "extension from capitalize operation, default character, end mode",
                     expression = clientLogic {
-                        registryKey("someString0").capitalized().trimmed(trimMode = TrimMode.END)
+                        registryKey("someString").capitalized().trimmed(trimMode = TrimMode.END)
                     },
-                    expected = """{"trim":[{"var":"key"}," ","end"]}"""
+                    expected = """{"trim":[{"capitalize":{"var":"someString"}},"","end"]}"""
                 ),
                 JsonLogicTestData(
-                    testCase = "from key, default character, start mode",
+                    testCase = "from lowercase operation, default character, start mode",
                     expression = clientLogic {
-                        trim(lowercase(registryKey("someString0")), trimMode = TrimMode.START)
+                        trim(lowercase(registryKey("someString")), trimMode = TrimMode.START)
                     },
-                    expected = """{"trim":[{"var":"key"}," ","start"]}"""
+                    expected = """{"trim":[{"lowercase":{"var":"someString"}},"","start"]}"""
                 ),
                 JsonLogicTestData(
-                    testCase = "from key, default character, bothEnds mode",
+                    testCase = "from capitalize operation, default character, bothEnds mode",
                     expression = clientLogic {
-                        trim(registryKey("someString0").capitalized(), trimMode = TrimMode.BOTH_ENDS)
+                        trim(registryKey("someString").capitalized(), trimMode = TrimMode.BOTH_ENDS)
                     },
-                    expected = """{"trim":[{"var":"key"}," ","bothEnds"]}"""
+                    expected = """{"trim":[{"capitalize":{"var":"someString"}},"","bothEnds"]}"""
                 ),
                 JsonLogicTestData(
-                    testCase = "from key, default character, end mode",
+                    testCase = "from lowercase operation, default character, end mode",
                     expression = clientLogic {
-                        trim(lowercase(registryKey("someString0")), trimMode = TrimMode.END)
+                        trim(lowercase(registryKey("someString")), trimMode = TrimMode.END)
                     },
-                    expected = """{"trim":[{"var":"key"}," ","end"]}"""
+                    expected = """{"trim":[{"lowercase":{"var":"someString"}},"","end"]}"""
                 ),
             ).toJsonLogicTestArgumentsStream()
         }

@@ -1,6 +1,5 @@
 package pl.allegro.mobile.logic
 
-import pl.allegro.mobile.logic.operators.numeric.GreaterThanOperation
 import pl.allegro.mobile.logic.operators.arithmetic.AdditionOperation
 import pl.allegro.mobile.logic.operators.arithmetic.DivisionOperation
 import pl.allegro.mobile.logic.operators.arithmetic.ModuloOperation
@@ -30,6 +29,7 @@ import pl.allegro.mobile.logic.operators.miscelanous.LogOperation
 import pl.allegro.mobile.logic.operators.numeric.BetweenOperation
 import pl.allegro.mobile.logic.operators.numeric.BetweenOrEqualOperation
 import pl.allegro.mobile.logic.operators.numeric.GreaterOrEqualOperation
+import pl.allegro.mobile.logic.operators.numeric.GreaterThanOperation
 import pl.allegro.mobile.logic.operators.numeric.LessOrEqualOperation
 import pl.allegro.mobile.logic.operators.numeric.LessThanOperation
 import pl.allegro.mobile.logic.operators.numeric.MaxOperation
@@ -39,8 +39,8 @@ import pl.allegro.mobile.logic.operators.string.ConcatenateOperation
 import pl.allegro.mobile.logic.operators.string.ContainsStringOperation
 import pl.allegro.mobile.logic.operators.string.LowercaseOperation
 import pl.allegro.mobile.logic.operators.string.SubstringOperation
-import pl.allegro.mobile.logic.operators.string.UppercaseOperation
 import pl.allegro.mobile.logic.operators.string.TrimOperation
+import pl.allegro.mobile.logic.operators.string.UppercaseOperation
 
 @ClientLogicMarker
 fun clientLogic(init: ClientLogic.() -> ClientLogicElement): ClientLogicElement {
