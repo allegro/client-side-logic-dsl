@@ -114,6 +114,7 @@ complexity:
     threshold: 600
   LongMethod:
     active: true
+    excludes: [ '**/test/**' ]
     threshold: 90
   LongParameterList:
     active: true
