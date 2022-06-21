@@ -11,7 +11,7 @@ internal interface LengthOperation {
      * @param sequence character sequence or operation returning string
      * @return length of the string evaluated client side.
      * Operator returns integer size
-     * @see: SizeOperationTest
+     * @see: LengthOperationTest
      */
     @ClientLogicMarker
     fun lengthOf(sequence: ClientLogicElement) = LengthOperatorFactory().create(sequence)
