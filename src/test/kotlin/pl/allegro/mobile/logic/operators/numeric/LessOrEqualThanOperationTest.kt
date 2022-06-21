@@ -24,14 +24,14 @@ class LessOrEqualThanOperationTest {
                 JsonLogicTestData(
                     testCase = "key, value",
                     expression = clientLogic {
-                        registryKey("temp").isLessOrEqualThan(4)
+                        registryKey("temp").isLessOrEqual(4)
                     },
                     expected = """{ "<=" : [{"var":"temp"}, 4]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "int, operation",
                     expression = clientLogic {
-                        8.isLessOrEqualThan(registryKey("test").plus(99))
+                        8.isLessOrEqual(registryKey("test").plus(99))
                     },
                     expected = """{"<=":[8,{"+":[{"var":"test"},99]}]}"""
                 ),
@@ -39,7 +39,7 @@ class LessOrEqualThanOperationTest {
                     testCase = "key, operation",
                     expression = clientLogic {
                         registryKey("test1")
-                            .isLessOrEqualThan(registryKey("test2").divide(2))
+                            .isLessOrEqual(registryKey("test2").divide(2))
                     },
                     expected = """{"<=":[{"var":"test1"},{"/":[{"var":"test2"},2]}]}"""
                 ),

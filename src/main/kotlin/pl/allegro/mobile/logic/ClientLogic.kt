@@ -29,14 +29,17 @@ import pl.allegro.mobile.logic.operators.logic.StrictNotEqualOperation
 import pl.allegro.mobile.logic.operators.miscelanous.LogOperation
 import pl.allegro.mobile.logic.operators.numeric.BetweenOperation
 import pl.allegro.mobile.logic.operators.numeric.BetweenOrEqualOperation
-import pl.allegro.mobile.logic.operators.numeric.GreaterOrEqualThanOperation
-import pl.allegro.mobile.logic.operators.numeric.LessOrEqualThanOperation
+import pl.allegro.mobile.logic.operators.numeric.GreaterOrEqualOperation
+import pl.allegro.mobile.logic.operators.numeric.LessOrEqualOperation
 import pl.allegro.mobile.logic.operators.numeric.LessThanOperation
 import pl.allegro.mobile.logic.operators.numeric.MaxOperation
 import pl.allegro.mobile.logic.operators.numeric.MinOperation
+import pl.allegro.mobile.logic.operators.string.CapitalizeOperation
 import pl.allegro.mobile.logic.operators.string.ConcatenateOperation
 import pl.allegro.mobile.logic.operators.string.ContainsStringOperation
+import pl.allegro.mobile.logic.operators.string.LowercaseOperation
 import pl.allegro.mobile.logic.operators.string.SubstringOperation
+import pl.allegro.mobile.logic.operators.string.UppercaseOperation
 import pl.allegro.mobile.logic.operators.string.TrimOperation
 
 @ClientLogicMarker
@@ -82,9 +85,9 @@ object ClientLogic :
     // numeric
     BetweenOperation,
     BetweenOrEqualOperation,
-    GreaterOrEqualThanOperation,
+    GreaterOrEqualOperation,
     GreaterThanOperation,
-    LessOrEqualThanOperation,
+    LessOrEqualOperation,
     LessThanOperation,
     MaxOperation,
     MinOperation,
@@ -94,6 +97,9 @@ object ClientLogic :
     ContainsStringOperation,
     SubstringOperation,
     TrimOperation,
+    LowercaseOperation,
+    UppercaseOperation,
+    CapitalizeOperation,
 
     // misc
     LogOperation
