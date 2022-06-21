@@ -7,7 +7,7 @@ import pl.allegro.mobile.logic.StringElement
 
 internal interface TrimOperation {
     /**
-     * Removes based on trim mode given character from the beginning and/or the end of the string.
+     * Removes based on trim mode given character from the declared end of the string.
      * @receiver Character sequence or client side operation that returns string
      * @param sequence client side data or operation results which will be injected to string
      * @param character to remove from the given end of sequence
@@ -17,10 +17,12 @@ internal interface TrimOperation {
      * @see: TrimOperationTest
      */
     @ClientLogicMarker
-    fun trim(sequence: ClientLogicElement, character: Char = ' ', trimMode: TrimMode = TrimMode.BOTH_ENDS) = TrimOperatorFactory().create(sequence, character, trimMode)
+    fun trim(sequence: ClientLogicElement, character: Char = ' ', trimMode: TrimMode = TrimMode.BOTH_ENDS) =
+        TrimOperatorFactory().create(sequence, character, trimMode)
 
     @ClientLogicMarker
-    fun ClientLogicElement.trimmed(character: Char = ' ', trimMode: TrimMode = TrimMode.BOTH_ENDS) = TrimOperatorFactory().create(this, character, trimMode)
+    fun ClientLogicElement.trimmed(character: Char = ' ', trimMode: TrimMode = TrimMode.BOTH_ENDS) =
+        TrimOperatorFactory().create(this, character, trimMode)
 }
 
 private class TrimOperatorFactory {
@@ -36,7 +38,7 @@ private class TrimOperatorFactory {
         .build()
 }
 
-internal enum class TrimMode(val mode: String) {
+enum class TrimMode(val mode: String) {
     START("start"),
     END("end"),
     BOTH_ENDS("bothEnds")
