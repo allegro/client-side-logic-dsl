@@ -1,8 +1,6 @@
 package pl.allegro.mobile.logic.operators.string
 
-import pl.allegro.mobile.logic.ClientLogic.isEmpty
 import pl.allegro.mobile.logic.ClientLogic.isEqual
-import pl.allegro.mobile.logic.ClientLogic.isNotEmpty
 import pl.allegro.mobile.logic.ClientLogicElement
 import pl.allegro.mobile.logic.ClientLogicMarker
 import pl.allegro.mobile.logic.ClientLogicOperator
@@ -22,16 +20,6 @@ internal interface SubstringOperation {
     @ClientLogicMarker
     fun ClientRegistryDataElement.endsWith(text: String) =
         substring(this, startFromIndex = (-1 * text.length)).isEqual(text)
-
-    // TODO remove after adding DSL for length operator
-    @ClientLogicMarker
-    fun ClientRegistryDataElement.lengthIsAtLeast(minLength: Int) =
-        substring(this, startFromIndex = minLength - 1).isNotEmpty()
-
-    // TODO remove after adding DSL for length operator
-    @ClientLogicMarker
-    fun ClientRegistryDataElement.lengthIsAtMost(maxLength: Int) =
-        substring(this, startFromIndex = maxLength).isEmpty()
 }
 
 private class SubstringOperatorFactory {
