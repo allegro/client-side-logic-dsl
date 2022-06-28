@@ -41,6 +41,7 @@ import pl.allegro.mobile.logic.operators.string.ContainsStringOperation
 import pl.allegro.mobile.logic.operators.string.LengthOperation
 import pl.allegro.mobile.logic.operators.string.LowercaseOperation
 import pl.allegro.mobile.logic.operators.string.SubstringOperation
+import pl.allegro.mobile.logic.operators.string.ToArrayOperation
 import pl.allegro.mobile.logic.operators.string.TrimOperation
 import pl.allegro.mobile.logic.operators.string.UppercaseOperation
 
@@ -104,6 +105,7 @@ object ClientLogic :
     LowercaseOperation,
     UppercaseOperation,
     CapitalizeOperation,
+    ToArrayOperation,
 
     // misc
     LogOperation
