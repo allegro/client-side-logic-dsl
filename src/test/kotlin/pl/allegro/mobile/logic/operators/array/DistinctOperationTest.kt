@@ -2,7 +2,6 @@ package pl.allegro.mobile.logic.operators.array
 
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
-import pl.allegro.mobile.logic.ClientLogic.distinct
 import pl.allegro.mobile.logic.clientLogic
 import pl.allegro.mobile.logic.operators.JsonLogicTestData
 import pl.allegro.mobile.logic.operators.assertSerializedExpressionMatchesExpected
