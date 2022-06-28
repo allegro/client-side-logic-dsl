@@ -6,6 +6,7 @@ import pl.allegro.mobile.logic.operators.arithmetic.ModuloOperation
 import pl.allegro.mobile.logic.operators.arithmetic.MultiplicationOperation
 import pl.allegro.mobile.logic.operators.arithmetic.SubtractionOperation
 import pl.allegro.mobile.logic.operators.array.AllOperation
+import pl.allegro.mobile.logic.operators.array.DistinctOperation
 import pl.allegro.mobile.logic.operators.array.FilterOperation
 import pl.allegro.mobile.logic.operators.array.InOperation
 import pl.allegro.mobile.logic.operators.array.MapOperation
@@ -69,6 +70,7 @@ object ClientLogic :
     ReduceOperation,
     SomeOperation,
     SizeOperation,
+    DistinctOperation,
 
     // data access
     MissingOperation,
