@@ -31,13 +31,13 @@ private class ReplaceOperatorFactory {
         .add(element)
         .add(StringElement(oldString))
         .add(StringElement(newString))
-        .add(StringElement(count.toString()))
+        .add(count.toStringElement())
         .build()
 
-    private fun ReplaceCount.toString() = when(this) {
+    private fun ReplaceCount.toStringElement() = StringElement(when(this) {
         is ReplaceCount.All -> "all"
         is ReplaceCount.Exact -> count.toString()
-    }
+    })
 }
 
 sealed class ReplaceCount {
