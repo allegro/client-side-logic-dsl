@@ -42,9 +42,9 @@ class ReverseOperationTest {
                 JsonLogicTestData(
                     testCase = "extension from string, result of lowercase operation",
                     expression = clientLogic {
-                        registryKey("banana and strawberries").toLowercase().reversed()
+                        registryKey("fruitMix").toLowercase().reversed()
                     },
-                    expected = """{"reverse":{"lowercase":{"var":"bananaandstrawberries"}}}"""
+                    expected = """{"reverse":{"lowercase":{"var":"fruitMix"}}}"""
                 ),
                 JsonLogicTestData(
                     testCase = "from list of keys",
