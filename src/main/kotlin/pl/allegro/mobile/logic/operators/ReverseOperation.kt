@@ -5,7 +5,7 @@ import pl.allegro.mobile.logic.ClientLogicMarker
 
 internal interface ReverseOperation {
     /**
-     * Reverses elements in the array in-place.
+     * Reverses characters sequence or elements in the list.
      * @receiver Character sequence, list of client side elements (use buildListOfElements or listOfElements) or client side operation that returns string or list.
      * @param element string, client side list or operation returning array or character sequence
      * @return reverse operator, evaluated client side.
@@ -19,4 +19,4 @@ internal interface ReverseOperation {
     fun ClientLogicElement.reversed() = ReverseOperatorFactory().create(this)
 }
 
-private class ReverseOperatorFactory : OperatorFactory("uppercase")
+private class ReverseOperatorFactory : OperatorFactory("reverse")
