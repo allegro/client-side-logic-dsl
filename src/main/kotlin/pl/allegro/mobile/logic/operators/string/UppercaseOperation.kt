@@ -8,7 +8,7 @@ internal interface UppercaseOperation {
     /**
      * Converts the character sequence to upper case.
      * @receiver Character sequence or client side operation that returns string
-     * @param sequence client side data or operation results which will be injected to string
+     * @param sequence client side data or operation results which will be injected into string
      * @return uppercase operator, evaluated client side.
      * Operator returns this string converted to upper case.
      * @see: UppercaseOperationTest

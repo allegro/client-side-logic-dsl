@@ -12,7 +12,7 @@ internal interface ConcatenateOperation {
      * @param format format of the string. Use %s to inject string.
      * Inspired by [String.format](https://www.javatpoint.com/java-string-format).
      * Formatting numbers (e.g. %.2f) will be added in the future.
-     * @param args client side data or operation results which will be injected to string
+     * @param args client side data or operation results which will be injected into string
      * @return [cat operator](https://jsonlogic.com/operations.html#cat), evaluated client side.
      * Operator returns concatenated string.
      * @see: ConcatOperationTest

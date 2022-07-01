@@ -22,30 +22,16 @@ class ToArrayOperationTest {
         fun testData(): Stream<Arguments?>? {
             return listOf(
                 JsonLogicTestData(
-                    testCase = "from string, key",
-                    expression = clientLogic {
-                        asArray(registryKey("test"))
-                    },
-                    expected = """{"toArray":{"var":"test"}}"""
-                ),
-                JsonLogicTestData(
                     testCase = "extension from string, key",
                     expression = clientLogic {
-                        registryKey("test").toArray()
+                        registryKey("test").toCharArray()
                     },
                     expected = """{"toArray":{"var":"test"}}"""
-                ),
-                JsonLogicTestData(
-                    testCase = "from string, result of concat operation",
-                    expression = clientLogic {
-                        asArray(concat("Delicious %s", registryKey("melon")))
-                    },
-                    expected = """{"toArray":{"cat":["Delicious",{"var":"melon"}]}}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from string, result of uppercase operation",
                     expression = clientLogic {
-                        registryKey("fruits").toUppercase().toArray()
+                        registryKey("fruits").toUppercase().toCharArray()
                     },
                     expected = """{"toArray":{"uppercase":{"var":"fruits"}}}"""
                 ),

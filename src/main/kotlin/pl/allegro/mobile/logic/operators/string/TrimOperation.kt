@@ -9,7 +9,7 @@ internal interface TrimOperation {
     /**
      * Based on trim mode, removes given character from the declared end of the string.
      * @receiver Character sequence or client side operation that returns a string
-     * @param sequence client side data or operation results which will be injected to string
+     * @param sequence client side data or operation results which will be injected into string
      * @param character to remove from the given end of the sequence
      * @param trimMode indicates direction of trimming
      * @return trim operator, evaluated client side.
