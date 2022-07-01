@@ -5,7 +5,7 @@ import pl.allegro.mobile.logic.ClientLogicMarker
 
 internal interface ReverseOperation {
     /**
-     * Reverses characters sequence or elements in the list.
+     * Reverses characters sequence or elements order in the list.
      * @receiver Character sequence, list of client side elements (use buildListOfElements or listOfElements) or client side operation that returns string or list.
      * @param element string, client side list or operation returning array or character sequence
      * @return reverse operator, evaluated client side.
