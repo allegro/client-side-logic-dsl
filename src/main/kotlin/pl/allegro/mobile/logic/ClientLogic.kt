@@ -26,6 +26,7 @@ import pl.allegro.mobile.logic.operators.logic.NotOperation
 import pl.allegro.mobile.logic.operators.logic.OrOperation
 import pl.allegro.mobile.logic.operators.logic.StrictEqualOperation
 import pl.allegro.mobile.logic.operators.logic.StrictNotEqualOperation
+import pl.allegro.mobile.logic.operators.miscelanous.CurrentTimeOperation
 import pl.allegro.mobile.logic.operators.miscelanous.LogOperation
 import pl.allegro.mobile.logic.operators.numeric.BetweenOperation
 import pl.allegro.mobile.logic.operators.numeric.BetweenOrEqualOperation
@@ -106,4 +107,5 @@ object ClientLogic :
     CapitalizeOperation,
 
     // misc
-    LogOperation
+    LogOperation,
+    CurrentTimeOperation

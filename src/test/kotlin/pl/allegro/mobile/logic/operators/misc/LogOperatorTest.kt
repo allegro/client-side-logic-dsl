@@ -8,9 +8,7 @@ class LogOperatorTest {
 
     @Test
     fun `LOG operator`() {
-        val expression = clientLogic {
-            log(registryKey("key1").and(registryKey("key2")))
-        }
+        val expression = clientLogic { log(registryKey("key1").and(registryKey("key2"))) }
 
         expression.isEqualAfterSerialization("{\"log\":{\"and\":[{\"var\":\"key1\"},{\"var\":\"key2\"}]}}")
     }
