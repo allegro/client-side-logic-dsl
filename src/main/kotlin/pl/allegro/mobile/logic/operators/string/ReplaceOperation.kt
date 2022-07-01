@@ -10,7 +10,7 @@ internal interface ReplaceOperation {
      * Replaces a given string with the new one.
      * @receiver Character sequence or client side operation that returns string
      * @param oldString character sequence to be replaced
-     * @param newString replaced string
+     * @param newString replacement string
      * @param count number of occurrences to replace
      * @return replace operator, evaluated client side.
      * Returns a new string with occurrences of oldString replaced with newString.
