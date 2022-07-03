@@ -1,5 +1,6 @@
 package pl.allegro.mobile.logic
 
+import pl.allegro.mobile.logic.operators.ReverseOperation
 import pl.allegro.mobile.logic.operators.arithmetic.AdditionOperation
 import pl.allegro.mobile.logic.operators.arithmetic.DivisionOperation
 import pl.allegro.mobile.logic.operators.arithmetic.ModuloOperation
@@ -106,4 +107,8 @@ object ClientLogic :
     CapitalizeOperation,
 
     // misc
-    LogOperation
+    LogOperation,
+
+    // multi-type
+    ReverseOperation
+
