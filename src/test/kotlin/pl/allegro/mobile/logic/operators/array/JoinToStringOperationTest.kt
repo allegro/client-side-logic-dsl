@@ -26,35 +26,35 @@ class JoinToStringOperationTest {
                     expression = clientLogic {
                         listOfElements(registryKey("a"), registryKey("b")).joinToString()
                     },
-                    expected = """{"sort":[[{"var":"vegetables"},{"var":"fruits"}],"asc"]}"""
+                    expected = """{"joinToString":[[{"var":"a"},{"var":"b"}],",","","",-1,"..."]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from list of keys, changed prefix",
                     expression = clientLogic {
                         listOfElements(registryKey("tree"), registryKey("fruit")).joinToString(prefix = "<")
                     },
-                    expected = """{"sort":[[{"var":"vegetables"},{"var":"fruits"}],"asc"]}"""
+                    expected = """{"joinToString":[[{"var":"tree"},{"var":"fruit"}],",","<","",-1,"..."]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from list of keys, changed postfix",
                     expression = clientLogic {
                         listOfElements(registryKey("a"), registryKey("b")).joinToString(postfix = ">")
                     },
-                    expected = """{"sort":[[{"var":"vegetables"},{"var":"fruits"}],"asc"]}"""
+                    expected = """{"joinToString":[[{"var":"a"},{"var":"b"}],",","",">",-1,"..."]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from list of keys, changed limit",
                     expression = clientLogic {
                         listOfElements(registryKey("a"), registryKey("b")).joinToString(limit = 2)
                     },
-                    expected = """{"sort":[[{"var":"vegetables"},{"var":"fruits"}],"asc"]}"""
+                    expected = """{"joinToString":[[{"var":"a"},{"var":"b"}],",","","",2,"..."]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from list of keys, changed truncated",
                     expression = clientLogic {
                         listOfElements(registryKey("greeting"), registryKey("mode")).joinToString(truncated = "!!!")
                     },
-                    expected = """{"sort":[[{"var":"vegetables"},{"var":"fruits"}],"asc"]}"""
+                    expected = """{"joinToString":[[{"var":"greeting"},{"var":"mode"}],",","","",-1,"!!!"]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from some operation, all default",
@@ -62,7 +62,7 @@ class JoinToStringOperationTest {
                         listOfElements(registryKey("flag0"), registryKey("flag2"))
                             .some { it.isEqual(true) }.joinToString()
                     },
-                    expected = """{"sort":[{"some":[[{"var":"flag0"},{"var":"flag2"}],{"==":[{"var":""},true]}]},"asc"]}"""
+                    expected = """{"joinToString":[{"some":[[{"var":"flag0"},{"var":"flag2"}],{"==":[{"var":""},true]}]},",","","",-1,"..."]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from map operation, changed prefix",
@@ -71,9 +71,9 @@ class JoinToStringOperationTest {
                             add(1)
                             add(2)
                             add(registryKey("test"))
-                        }.map { it.multiply(2) }.joinToString(prefix = "answer: ")
+                        }.map { it.multiply(2) }.joinToString(prefix = "answer: ").distinct()
                     },
-                    expected = """{"sort":[{"some":[[{"var":"flag0"},{"var":"flag2"}],{"==":[{"var":""},true]}]},"asc"]}"""
+                    expected = """{"distinct":{"joinToString":[{"map":[[1,2,{"var":"test"}],{"*":[{"var":""},2]}]},",","answer:","",-1,"..."]}}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from none operation, changed postfix",
@@ -83,7 +83,7 @@ class JoinToStringOperationTest {
                                 it.plus(2).isLessThan(registryKey("test"))
                             }.joinToString(postfix = "!")
                     },
-                    expected = """{"sort":[{"some":[[{"var":"flag0"},{"var":"flag2"}],{"==":[{"var":""},true]}]},"desc"]}"""
+                    expected = """{"joinToString":[{"none":[[{"var":"element1"},{"var":"element2"}],{"<":[{"+":[{"var":""},2]},{"var":"test"}]}]},",","","!",-1,"..."]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from distinct operation, changed limit",
@@ -91,7 +91,7 @@ class JoinToStringOperationTest {
                         listOfElements(registryKey("number1"), registryKey("number2"))
                             .distinct().joinToString(limit = 10)
                     },
-                    expected = """{"sort":[{"some":[[{"var":"flag0"},{"var":"flag2"}],{"==":[{"var":""},true]}]},"desc"]}"""
+                    expected = """{"joinToString":[{"distinct":[{"var":"number1"},{"var":"number2"}]},",","","",10,"..."]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from some operation, changed truncated",
@@ -99,7 +99,7 @@ class JoinToStringOperationTest {
                         listOfElements(registryKey("flag0"), registryKey("flag2"))
                             .some { it.isEqual("my_test") }.joinToString(truncated = "??")
                     },
-                    expected = """{"sort":[{"some":[[{"var":"flag0"},{"var":"flag2"}],{"==":[{"var":""},true]}]},"desc"]}"""
+                    expected = """{"joinToString":[{"some":[[{"var":"flag0"},{"var":"flag2"}],{"==":[{"var":""},"my_test"]}]},",","","",-1,"??"]}"""
                 ),
             ).toJsonLogicTestArgumentsStream()
         }
