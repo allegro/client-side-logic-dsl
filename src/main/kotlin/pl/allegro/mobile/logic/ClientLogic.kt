@@ -1,11 +1,13 @@
 package pl.allegro.mobile.logic
 
+import pl.allegro.mobile.logic.operators.ReverseOperation
 import pl.allegro.mobile.logic.operators.arithmetic.AdditionOperation
 import pl.allegro.mobile.logic.operators.arithmetic.DivisionOperation
 import pl.allegro.mobile.logic.operators.arithmetic.ModuloOperation
 import pl.allegro.mobile.logic.operators.arithmetic.MultiplicationOperation
 import pl.allegro.mobile.logic.operators.arithmetic.SubtractionOperation
 import pl.allegro.mobile.logic.operators.array.AllOperation
+import pl.allegro.mobile.logic.operators.array.DistinctOperation
 import pl.allegro.mobile.logic.operators.array.FilterOperation
 import pl.allegro.mobile.logic.operators.array.InOperation
 import pl.allegro.mobile.logic.operators.array.MapOperation
@@ -38,6 +40,7 @@ import pl.allegro.mobile.logic.operators.numeric.MinOperation
 import pl.allegro.mobile.logic.operators.string.CapitalizeOperation
 import pl.allegro.mobile.logic.operators.string.ConcatenateOperation
 import pl.allegro.mobile.logic.operators.string.ContainsStringOperation
+import pl.allegro.mobile.logic.operators.string.IsBlankOperation
 import pl.allegro.mobile.logic.operators.string.LengthOperation
 import pl.allegro.mobile.logic.operators.string.LowercaseOperation
 import pl.allegro.mobile.logic.operators.string.ReplaceOperation
@@ -70,6 +73,7 @@ object ClientLogic :
     ReduceOperation,
     SomeOperation,
     SizeOperation,
+    DistinctOperation,
 
     // data access
     MissingOperation,
@@ -106,6 +110,11 @@ object ClientLogic :
     UppercaseOperation,
     CapitalizeOperation,
     ReplaceOperation,
+    IsBlankOperation,
 
     // misc
-    LogOperation
+    LogOperation,
+
+    // multi-type
+    ReverseOperation
+
