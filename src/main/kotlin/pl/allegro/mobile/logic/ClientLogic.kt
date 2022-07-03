@@ -40,6 +40,7 @@ import pl.allegro.mobile.logic.operators.numeric.MinOperation
 import pl.allegro.mobile.logic.operators.string.CapitalizeOperation
 import pl.allegro.mobile.logic.operators.string.ConcatenateOperation
 import pl.allegro.mobile.logic.operators.string.ContainsStringOperation
+import pl.allegro.mobile.logic.operators.string.IsBlankOperation
 import pl.allegro.mobile.logic.operators.string.LengthOperation
 import pl.allegro.mobile.logic.operators.string.LowercaseOperation
 import pl.allegro.mobile.logic.operators.string.SubstringOperation
@@ -107,6 +108,7 @@ object ClientLogic :
     LowercaseOperation,
     UppercaseOperation,
     CapitalizeOperation,
+    IsBlankOperation,
 
     // misc
     LogOperation,
