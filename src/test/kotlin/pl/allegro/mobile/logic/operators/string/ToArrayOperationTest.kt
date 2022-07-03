@@ -3,6 +3,7 @@ package pl.allegro.mobile.logic.operators.string
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
+import pl.allegro.mobile.logic.ClientLogic.distinct
 import pl.allegro.mobile.logic.clientLogic
 import pl.allegro.mobile.logic.operators.JsonLogicTestData
 import pl.allegro.mobile.logic.operators.assertSerializedExpressionMatchesExpected
@@ -27,6 +28,13 @@ class ToArrayOperationTest {
                         registryKey("test").toCharArray()
                     },
                     expected = """{"toArray":{"var":"test"}}"""
+                ),
+                JsonLogicTestData(
+                    testCase = "extension from string, chaining",
+                    expression = clientLogic {
+                        registryKey("test").toCharArray().distinct()
+                    },
+                    expected = """{"distinct":{"toArray":{"var":"test"}}}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from string, result of uppercase operation",

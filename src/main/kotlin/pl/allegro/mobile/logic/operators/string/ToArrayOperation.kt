@@ -2,7 +2,7 @@ package pl.allegro.mobile.logic.operators.string
 
 import pl.allegro.mobile.logic.ClientLogicElement
 import pl.allegro.mobile.logic.ClientLogicMarker
-import pl.allegro.mobile.logic.operators.OperatorFactory
+import pl.allegro.mobile.logic.ClientLogicOperator
 
 internal interface ToArrayOperation {
     /**
@@ -16,4 +16,6 @@ internal interface ToArrayOperation {
     fun ClientLogicElement.toCharArray() = ToArrayOperatorFactory().create(this)
 }
 
-private class ToArrayOperatorFactory : OperatorFactory("toArray")
+private class ToArrayOperatorFactory {
+    fun create(vararg elements: ClientLogicElement) = ClientLogicOperator("toArray", *elements)
+}
