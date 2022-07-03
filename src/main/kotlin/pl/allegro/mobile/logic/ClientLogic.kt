@@ -10,6 +10,7 @@ import pl.allegro.mobile.logic.operators.array.AllOperation
 import pl.allegro.mobile.logic.operators.array.DistinctOperation
 import pl.allegro.mobile.logic.operators.array.FilterOperation
 import pl.allegro.mobile.logic.operators.array.InOperation
+import pl.allegro.mobile.logic.operators.array.JoinToStringOperation
 import pl.allegro.mobile.logic.operators.array.MapOperation
 import pl.allegro.mobile.logic.operators.array.MergeOperation
 import pl.allegro.mobile.logic.operators.array.NoneOperation
@@ -73,6 +74,7 @@ object ClientLogic :
     SomeOperation,
     SizeOperation,
     DistinctOperation,
+    JoinToStringOperation,
 
     // data access
     MissingOperation,
