@@ -8,7 +8,7 @@ internal interface CapitalizeOperation {
     /**
      * Converts first character of this string to titlecased.
      * @receiver Character sequence or client side operation that returns string
-     * @param sequence client side data or operation results which will be injected to string
+     * @param sequence client side data or operation results which will be injected into string
      * @return capitalize operator, evaluated client side.
      * Operator returns this string having its first letter titlecased.
      * @see: CapitalizeOperationTest
