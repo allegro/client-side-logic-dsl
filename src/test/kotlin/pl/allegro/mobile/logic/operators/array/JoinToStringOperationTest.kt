@@ -1,13 +1,13 @@
 package pl.allegro.mobile.logic.operators.array
 
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import pl.allegro.mobile.logic.clientLogic
 import pl.allegro.mobile.logic.operators.JsonLogicTestData
 import pl.allegro.mobile.logic.operators.assertSerializedExpressionMatchesExpected
 import pl.allegro.mobile.logic.operators.toJsonLogicTestArgumentsStream
 import java.util.stream.Stream
-import org.junit.jupiter.params.provider.Arguments
 
 class JoinToStringOperationTest {
 
@@ -78,12 +78,12 @@ class JoinToStringOperationTest {
                 JsonLogicTestData(
                     testCase = "extension from none operation, changed postfix",
                     expression = clientLogic {
-                        listOfElements(registryKey("element1"), registryKey("element2"))
+                        listOfElements(registryKey("key1"), registryKey("key2"))
                             .none {
-                                it.plus(2).isLessThan(registryKey("test"))
+                                it.isLessThan(registryKey("test"))
                             }.joinToString(postfix = "!")
                     },
-                    expected = """{"joinToString":[{"none":[[{"var":"element1"},{"var":"element2"}],{"<":[{"+":[{"var":""},2]},{"var":"test"}]}]},",","","!",-1,"..."]}"""
+                    expected = """{"joinToString":[{"none":[[{"var":"key1"},{"var":"key2"}],{"<":[{"var":""},{"var":"test"}]}]},",","","!",-1,"..."]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from distinct operation, changed limit",

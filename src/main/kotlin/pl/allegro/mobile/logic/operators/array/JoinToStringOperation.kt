@@ -26,23 +26,30 @@ internal interface JoinToStringOperation {
         postfix: String = "",
         limit: Int = -1,
         truncated: String = "..."
-    ) = JoinToStringOperatorFactory().create(this, separator, prefix, postfix, limit, truncated)
+    ) = JoinToStringOperatorFactory().create(this, JoinToStringArguments(separator, prefix, postfix, limit, truncated))
 }
+
+private data class JoinToStringArguments(
+    val separator: String,
+    val prefix: String,
+    val postfix: String,
+    val limit: Int,
+    val truncated: String
+)
 
 private class JoinToStringOperatorFactory {
     fun create(
         element: ClientLogicElement,
-        separator: String,
-        prefix: String,
-        postfix: String,
-        limit: Int,
-        truncated: String
-    ) = ClientLogicOperator.Builder("joinToString")
-        .add(element)
-        .add(StringElement(separator))
-        .add(StringElement(prefix))
-        .add(StringElement(postfix))
-        .add(NumberElement(limit))
-        .add(StringElement(truncated))
-        .build()
+        arguments: JoinToStringArguments
+    ) = with(arguments) {
+        ClientLogicOperator.Builder("joinToString")
+            .add(element)
+            .add(StringElement(separator))
+            .add(StringElement(prefix))
+            .add(StringElement(postfix))
+            .add(NumberElement(limit))
+            .add(StringElement(truncated))
+            .build()
+    }
 }
+
