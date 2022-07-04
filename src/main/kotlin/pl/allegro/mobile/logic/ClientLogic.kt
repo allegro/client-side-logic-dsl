@@ -10,7 +10,9 @@ import pl.allegro.mobile.logic.operators.arithmetic.SubtractionOperation
 import pl.allegro.mobile.logic.operators.array.AllOperation
 import pl.allegro.mobile.logic.operators.array.DistinctOperation
 import pl.allegro.mobile.logic.operators.array.FilterOperation
+import pl.allegro.mobile.logic.operators.array.FindOperation
 import pl.allegro.mobile.logic.operators.array.InOperation
+import pl.allegro.mobile.logic.operators.array.JoinToStringOperation
 import pl.allegro.mobile.logic.operators.array.MapOperation
 import pl.allegro.mobile.logic.operators.array.MergeOperation
 import pl.allegro.mobile.logic.operators.array.NoneOperation
@@ -29,6 +31,7 @@ import pl.allegro.mobile.logic.operators.logic.NotOperation
 import pl.allegro.mobile.logic.operators.logic.OrOperation
 import pl.allegro.mobile.logic.operators.logic.StrictEqualOperation
 import pl.allegro.mobile.logic.operators.logic.StrictNotEqualOperation
+import pl.allegro.mobile.logic.operators.miscelanous.CurrentTimeOperation
 import pl.allegro.mobile.logic.operators.miscelanous.LogOperation
 import pl.allegro.mobile.logic.operators.numeric.BetweenOperation
 import pl.allegro.mobile.logic.operators.numeric.BetweenOrEqualOperation
@@ -44,6 +47,7 @@ import pl.allegro.mobile.logic.operators.string.ContainsStringOperation
 import pl.allegro.mobile.logic.operators.string.IsBlankOperation
 import pl.allegro.mobile.logic.operators.string.LengthOperation
 import pl.allegro.mobile.logic.operators.string.LowercaseOperation
+import pl.allegro.mobile.logic.operators.string.ReplaceOperation
 import pl.allegro.mobile.logic.operators.string.SubstringOperation
 import pl.allegro.mobile.logic.operators.string.TrimOperation
 import pl.allegro.mobile.logic.operators.string.UppercaseOperation
@@ -73,7 +77,9 @@ object ClientLogic :
     ReduceOperation,
     SomeOperation,
     SizeOperation,
+    FindOperation,
     DistinctOperation,
+    JoinToStringOperation,
 
     // data access
     MissingOperation,
@@ -109,10 +115,12 @@ object ClientLogic :
     LowercaseOperation,
     UppercaseOperation,
     CapitalizeOperation,
+    ReplaceOperation,
     IsBlankOperation,
 
     // misc
     LogOperation,
+    CurrentTimeOperation,
 
     // multi-type
     DropOperation,
