@@ -1,5 +1,6 @@
 package pl.allegro.mobile.logic
 
+import pl.allegro.mobile.logic.operators.DropOperation
 import pl.allegro.mobile.logic.operators.ReverseOperation
 import pl.allegro.mobile.logic.operators.arithmetic.AdditionOperation
 import pl.allegro.mobile.logic.operators.arithmetic.DivisionOperation
@@ -18,6 +19,7 @@ import pl.allegro.mobile.logic.operators.array.NoneOperation
 import pl.allegro.mobile.logic.operators.array.ReduceOperation
 import pl.allegro.mobile.logic.operators.array.SizeOperation
 import pl.allegro.mobile.logic.operators.array.SomeOperation
+import pl.allegro.mobile.logic.operators.array.SortOperation
 import pl.allegro.mobile.logic.operators.dataaccess.MissingOperation
 import pl.allegro.mobile.logic.operators.dataaccess.MissingSomeOperation
 import pl.allegro.mobile.logic.operators.dataaccess.PrimitiveToElementConversion
@@ -77,6 +79,7 @@ object ClientLogic :
     ReduceOperation,
     SomeOperation,
     SizeOperation,
+    SortOperation,
     FindOperation,
     DistinctOperation,
     JoinToStringOperation,
@@ -124,4 +127,5 @@ object ClientLogic :
     CurrentTimeOperation,
 
     // multi-type
+    DropOperation,
     ReverseOperation
