@@ -3,6 +3,7 @@ package pl.allegro.mobile.logic.operators
 import pl.allegro.mobile.logic.ClientLogicElement
 import pl.allegro.mobile.logic.ClientLogicMarker
 import pl.allegro.mobile.logic.ClientLogicOperator
+import pl.allegro.mobile.logic.NumberElement
 import pl.allegro.mobile.logic.StringElement
 
 internal interface DropOperation {
@@ -27,7 +28,7 @@ private class DropOperatorFactory {
         mode: DropMode
     ) = ClientLogicOperator.Builder("drop")
         .add(element)
-        .add(StringElement(count.toString()))
+        .add(NumberElement(count))
         .add(mode.toStringElement())
         .build()
 

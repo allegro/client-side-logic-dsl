@@ -23,56 +23,56 @@ class DropOperationTest {
                     expression = clientLogic {
                         registryKey("test").drop(1)
                     },
-                    expected = """{"drop":[{"var":"test"},"1","first"]}"""
+                    expected = """{"drop":[{"var":"test"},1,"first"]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from string, key, last mode",
                     expression = clientLogic {
                         registryKey("test").drop(count = 2, mode = DropMode.Last)
                     },
-                    expected = """{"drop":[{"var":"test"},"2","last"]}"""
+                    expected = """{"drop":[{"var":"test"},2,"last"]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from string, key, first mode",
                     expression = clientLogic {
                         registryKey("test").drop(count = 3, mode = DropMode.First)
                     },
-                    expected = """{"drop":[{"var":"test"},"3","first"]}"""
+                    expected = """{"drop":[{"var":"test"},3,"first"]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from string, result of lowercase operation",
                     expression = clientLogic {
                         registryKey("fruits").toLowercase().drop(2)
                     },
-                    expected = """{"drop":[{"lowercase":{"var":"fruits"}},"2","first"]}"""
+                    expected = """{"drop":[{"lowercase":{"var":"fruits"}},2,"first"]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from list of keys",
                     expression = clientLogic {
                         listOfElements(registryKey("vegetables"), registryKey("fruits")).drop(1)
                     },
-                    expected = """{"drop":[[{"var":"vegetables"},{"var":"fruits"}],"1","first"]}"""
+                    expected = """{"drop":[[{"var":"vegetables"},{"var":"fruits"}],1,"first"]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from list of keys, default mode",
                     expression = clientLogic {
                         listOfElements(registryKey("vegetables"), registryKey("fruits")).drop(1)
                     },
-                    expected = """{"drop":[[{"var":"vegetables"},{"var":"fruits"}],"1","first"]}"""
+                    expected = """{"drop":[[{"var":"vegetables"},{"var":"fruits"}],1,"first"]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from list of keys, last mode",
                     expression = clientLogic {
                         listOfElements(registryKey("vegetables"), registryKey("fruits")).drop(count = 1, mode = DropMode.Last)
                     },
-                    expected = """{"drop":[[{"var":"vegetables"},{"var":"fruits"}],"1","last"]}"""
+                    expected = """{"drop":[[{"var":"vegetables"},{"var":"fruits"}],1,"last"]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from list of keys, first mode",
                     expression = clientLogic {
                         listOfElements(registryKey("vegetables"), registryKey("fruits")).drop(1, mode = DropMode.First)
                     },
-                    expected = """{"drop":[[{"var":"vegetables"},{"var":"fruits"}],"1","first"]}"""
+                    expected = """{"drop":[[{"var":"vegetables"},{"var":"fruits"}],1,"first"]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from list, result of merge operation",
@@ -87,7 +87,7 @@ class DropOperationTest {
                         }
                         list1.mergeWith(list2).drop(2)
                     },
-                    expected = """{"drop":[{"merge":[[1,2],[3,4]]},"2","first"]}"""
+                    expected = """{"drop":[{"merge":[[1,2],[3,4]]},2,"first"]}"""
                 ),
             ).toJsonLogicTestArgumentsStream()
         }
