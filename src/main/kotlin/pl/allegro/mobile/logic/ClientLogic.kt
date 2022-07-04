@@ -1,5 +1,6 @@
 package pl.allegro.mobile.logic
 
+import pl.allegro.mobile.logic.operators.DropOperation
 import pl.allegro.mobile.logic.operators.ReverseOperation
 import pl.allegro.mobile.logic.operators.arithmetic.AdditionOperation
 import pl.allegro.mobile.logic.operators.arithmetic.DivisionOperation
@@ -122,4 +123,5 @@ object ClientLogic :
     CurrentTimeOperation,
 
     // multi-type
+    DropOperation,
     ReverseOperation
