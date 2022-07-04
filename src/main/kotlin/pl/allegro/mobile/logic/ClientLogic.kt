@@ -9,7 +9,9 @@ import pl.allegro.mobile.logic.operators.arithmetic.SubtractionOperation
 import pl.allegro.mobile.logic.operators.array.AllOperation
 import pl.allegro.mobile.logic.operators.array.DistinctOperation
 import pl.allegro.mobile.logic.operators.array.FilterOperation
+import pl.allegro.mobile.logic.operators.array.FindOperation
 import pl.allegro.mobile.logic.operators.array.InOperation
+import pl.allegro.mobile.logic.operators.array.JoinToStringOperation
 import pl.allegro.mobile.logic.operators.array.MapOperation
 import pl.allegro.mobile.logic.operators.array.MergeOperation
 import pl.allegro.mobile.logic.operators.array.NoneOperation
@@ -29,6 +31,7 @@ import pl.allegro.mobile.logic.operators.logic.NotOperation
 import pl.allegro.mobile.logic.operators.logic.OrOperation
 import pl.allegro.mobile.logic.operators.logic.StrictEqualOperation
 import pl.allegro.mobile.logic.operators.logic.StrictNotEqualOperation
+import pl.allegro.mobile.logic.operators.miscelanous.CurrentTimeOperation
 import pl.allegro.mobile.logic.operators.miscelanous.LogOperation
 import pl.allegro.mobile.logic.operators.numeric.BetweenOperation
 import pl.allegro.mobile.logic.operators.numeric.BetweenOrEqualOperation
@@ -74,7 +77,9 @@ object ClientLogic :
     SomeOperation,
     SizeOperation,
     SortOperation,
+    FindOperation,
     DistinctOperation,
+    JoinToStringOperation,
 
     // data access
     MissingOperation,
@@ -114,7 +119,7 @@ object ClientLogic :
 
     // misc
     LogOperation,
+    CurrentTimeOperation,
 
     // multi-type
     ReverseOperation
-
