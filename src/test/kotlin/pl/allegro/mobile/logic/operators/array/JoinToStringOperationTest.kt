@@ -78,8 +78,7 @@ class JoinToStringOperationTest {
                 JsonLogicTestData(
                     testCase = "extension from none operation, changed postfix",
                     expression = clientLogic {
-                        listOfElements(registryKey("key1"))
-                            .none {
+                        listOfElements(registryKey("key1")).none {
                                 it.isLessThan(registryKey("test"))
                             }.joinToString(postfix = "!")
                     },
