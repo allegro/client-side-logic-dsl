@@ -19,6 +19,7 @@ import pl.allegro.mobile.logic.operators.array.NoneOperation
 import pl.allegro.mobile.logic.operators.array.ReduceOperation
 import pl.allegro.mobile.logic.operators.array.SizeOperation
 import pl.allegro.mobile.logic.operators.array.SomeOperation
+import pl.allegro.mobile.logic.operators.array.SortOperation
 import pl.allegro.mobile.logic.operators.dataaccess.MissingOperation
 import pl.allegro.mobile.logic.operators.dataaccess.MissingSomeOperation
 import pl.allegro.mobile.logic.operators.dataaccess.PrimitiveToElementConversion
@@ -77,6 +78,7 @@ object ClientLogic :
     ReduceOperation,
     SomeOperation,
     SizeOperation,
+    SortOperation,
     FindOperation,
     DistinctOperation,
     JoinToStringOperation,
