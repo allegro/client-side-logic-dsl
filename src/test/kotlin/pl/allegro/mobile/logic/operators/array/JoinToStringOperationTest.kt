@@ -78,12 +78,12 @@ class JoinToStringOperationTest {
                 JsonLogicTestData(
                     testCase = "extension from none operation, changed postfix",
                     expression = clientLogic {
-                        listOfElements(registryKey("key1"), registryKey("key2"))
+                        listOfElements(registryKey("key1"))
                             .none {
                                 it.isLessThan(registryKey("test"))
                             }.joinToString(postfix = "!")
                     },
-                    expected = """{"joinToString":[{"none":[[{"var":"key1"},{"var":"key2"}],{"<":[{"var":""},{"var":"test"}]}]},",","","!",-1,"..."]}"""
+                    expected = """{"joinToString":[{"none":[[{"var":"key1"}],{"<":[{"var":""},{"var":"test"}]}]},",","","!",-1,"..."]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "extension from distinct operation, changed limit",
