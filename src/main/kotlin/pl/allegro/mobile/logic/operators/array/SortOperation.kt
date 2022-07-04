@@ -17,7 +17,8 @@ internal interface SortOperation {
      */
 
     @ClientLogicMarker
-    fun <T : ClientLogicElement> ClientLogicArray<T>.sort(mode: SortMode = SortMode.Ascending) = SortOperatorFactory().create(this, mode)
+    fun <T : ClientLogicElement> ClientLogicArray<T>.sort(mode: SortMode = SortMode.Ascending) =
+        SortOperatorFactory().create(this, mode)
 }
 
 private class SortOperatorFactory {
