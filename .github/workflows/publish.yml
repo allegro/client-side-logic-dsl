@@ -30,8 +30,8 @@ jobs:
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
 
-      - name: Push new tag on master
-        if: github.ref == 'refs/heads/master'
+      - name: Push new tag on main
+        if: github.ref == 'refs/heads/main'
         uses: allegro-actions/create-tag@v1
         with:
           tag: ${{ steps.bump.outputs.next_tag }}
