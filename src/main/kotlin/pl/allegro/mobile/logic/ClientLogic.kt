@@ -52,6 +52,7 @@ import pl.allegro.mobile.logic.operators.string.ReplaceOperation
 import pl.allegro.mobile.logic.operators.string.SubstringOperation
 import pl.allegro.mobile.logic.operators.string.ToArrayOperation
 import pl.allegro.mobile.logic.operators.string.TrimOperation
+import pl.allegro.mobile.logic.operators.string.FormatOperation
 import pl.allegro.mobile.logic.operators.string.UppercaseOperation
 
 @ClientLogicMarker
@@ -121,6 +122,7 @@ object ClientLogic :
     ToArrayOperation,
     ReplaceOperation,
     IsBlankOperation,
+    FormatOperation,
 
     // misc
     LogOperation,
