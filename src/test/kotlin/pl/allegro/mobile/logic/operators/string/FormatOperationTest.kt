@@ -26,11 +26,18 @@ class FormatOperationTest {
                 expected = """{"format":[{"var":"someString0"},[{"var":"someString0"}]]}"""
             ),
             JsonLogicTestData(
-                testCase = "format string",
+                testCase = "format string with elements as params",
                 expression = clientLogic {
                     format("%s test %d", registryKey("someString0"), registryKey("someString1"))
                 },
                 expected = """{"format":["%stest%d",[{"var":"someString0"},{"var":"someString1"}]]}"""
+            ),
+            JsonLogicTestData(
+                testCase = "format string with simple types",
+                expression = clientLogic {
+                    format("%s test %d %f %s", "someString", 100, 3.4567, true)
+                },
+                expected = """{"format":["%stest%d%f%s",["someString", 100, 3.4567, true]]}"""
             ),
         ).toJsonLogicTestArgumentsStream()
     }

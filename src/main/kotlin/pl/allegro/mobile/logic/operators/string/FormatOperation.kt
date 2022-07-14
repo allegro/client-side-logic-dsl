@@ -19,25 +19,29 @@ internal interface FormatOperation {
      * @see: FormatOperationTest
      */
     @ClientLogicMarker
-    fun format(formatString: String, vararg args: ClientLogicElement) = FormatOperatorFactory().create(StringElement(formatString), args)
+    fun format(formatString: String, vararg args: Any) = FormatOperatorFactory().create(StringElement(formatString), args)
 
     @ClientLogicMarker
-    fun ClientLogicElement.format(vararg args: ClientLogicElement) = FormatOperatorFactory().create(this, args)
+    fun ClientLogicElement.format(vararg args: Any) = FormatOperatorFactory().create(this, args)
 }
 
 private class FormatOperatorFactory {
     fun create(
         formatString: ClientLogicElement,
-        args: Array<out ClientLogicElement>
+        args: Array<out Any>
     ) = ClientLogicOperator.Builder("format")
         .add(formatString)
         .add(args.toElements())
         .build()
 
-    private fun Array<out ClientLogicElement>.toElements(): ListOfClientElements<ClientLogicElement> {
+    private fun Array<out Any>.toElements(): ListOfClientElements<ClientLogicElement> {
         val elementsListBuilder = ListOfClientElements.Builder()
         forEach {
             when (it) {
+                is String -> elementsListBuilder.add(StringElement(it))
+                is Int -> elementsListBuilder.add(NumberElement(it))
+                is Double -> elementsListBuilder.add(NumberElement(it))
+                is Boolean -> elementsListBuilder.add(BooleanElement(it))
                 is StringElement -> elementsListBuilder.add(it)
                 is NumberElement -> elementsListBuilder.add(it)
                 is BooleanElement -> elementsListBuilder.add(it)
