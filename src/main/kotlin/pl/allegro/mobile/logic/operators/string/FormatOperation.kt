@@ -39,12 +39,8 @@ private class FormatOperatorFactory {
         forEach {
             when (it) {
                 is String -> elementsListBuilder.add(StringElement(it))
-                is Int -> elementsListBuilder.add(NumberElement(it))
-                is Double -> elementsListBuilder.add(NumberElement(it))
+                is Number -> elementsListBuilder.add(NumberElement(it))
                 is Boolean -> elementsListBuilder.add(BooleanElement(it))
-                is StringElement -> elementsListBuilder.add(it)
-                is NumberElement -> elementsListBuilder.add(it)
-                is BooleanElement -> elementsListBuilder.add(it)
                 is ClientLogicElement -> elementsListBuilder.add(it)
             }
         }
