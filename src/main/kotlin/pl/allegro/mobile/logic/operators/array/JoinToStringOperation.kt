@@ -11,6 +11,7 @@ internal interface JoinToStringOperation {
     /**
      * Creates a string from all the elements separated using separator and using the given prefix and postfix if supplied.
      * @receiver list of client side elements (use buildListOfElements or listOfElements) or client side operation that returns array
+     * @param separator character sequence put between joint collection elements
      * @param prefix character sequence put at the start of the joint collection elements
      * @param postfix character sequence put at the end of the joint collection elements
      * @param limit number of elements before truncated string
