@@ -19,10 +19,10 @@ internal interface DecimalFormatOperation {
      * @see: DecimalFormatOperationTest
      */
     @ClientLogicMarker
-    fun format(formatString: String, vararg args: Any) = DecimalFormatOperatorFactory().create(StringElement(formatString), args)
+    fun decimalFormat(formatString: String, vararg args: Any) = DecimalFormatOperatorFactory().create(StringElement(formatString), args)
 
     @ClientLogicMarker
-    fun ClientLogicElement.format(vararg args: Any) = DecimalFormatOperatorFactory().create(this, args)
+    fun ClientLogicElement.decimalFormat(vararg args: Any) = DecimalFormatOperatorFactory().create(this, args)
 }
 
 private class DecimalFormatOperatorFactory {
