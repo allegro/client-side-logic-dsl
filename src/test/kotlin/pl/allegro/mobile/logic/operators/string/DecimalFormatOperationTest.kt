@@ -35,9 +35,9 @@ class DecimalFormatOperationTest {
             JsonLogicTestData(
                 testCase = "format string with unsupported simple types",
                 expression = clientLogic {
-                    format("%s test %d %s", "someString", 100, true)
+                    format("%s test %d %s", "someString", 100, true, registryKey("someString0"))
                 },
-                expected = """{"decimalFormat":["%s test %d %s",[100]]}"""
+                expected = """{"decimalFormat":["%s test %d %s",[100,{"var":"someString0"}]]}"""
             ),
         ).toJsonLogicTestArgumentsStream()
     }
