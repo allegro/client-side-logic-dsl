@@ -22,9 +22,14 @@ class JsonLogicTestData(
 fun List<JsonLogicTestData>.toJsonLogicTestArgumentsStream(): Stream<Arguments?>? =
     Stream.of(*(this.map { Arguments.of(it.testCase, it) }.toTypedArray()))
 
-fun JsonLogicTestData.assertSerializedExpressionMatchesExpected() {
-    val expressionJson = ClientLogicToJsonMapper.clientLogicExpressionToJson(expression).stripWhitespace()
-    assertThat(expressionJson).isEqualTo(expected.stripWhitespace())
+fun JsonLogicTestData.assertSerializedExpressionMatchesExpected(stripWhitespaces: Boolean = true) {
+    val expressionJson = ClientLogicToJsonMapper.clientLogicExpressionToJson(expression).let { resultJson ->
+        if (stripWhitespaces) resultJson.stripWhitespace() else resultJson
+    }
+
+    val expectedJson = if (stripWhitespaces) expected.stripWhitespace() else expected
+
+    assertThat(expressionJson).isEqualTo(expectedJson)
 }
 
 private object ClientLogicToJsonMapper {

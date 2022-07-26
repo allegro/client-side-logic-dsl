@@ -12,7 +12,7 @@ class DecimalFormatOperationTest {
     @ParameterizedTest(name = "[{index}] Format operator - {0}")
     @MethodSource("testData")
     fun `should map format operation to json`(testCaseName: String, jsonLogicTestData: JsonLogicTestData) {
-        jsonLogicTestData.assertSerializedExpressionMatchesExpected()
+        jsonLogicTestData.assertSerializedExpressionMatchesExpected(stripWhitespaces = false)
     }
 
     companion object {
@@ -23,21 +23,21 @@ class DecimalFormatOperationTest {
                 expression = clientLogic {
                     registryKey("someString0").format(registryKey("someString0"))
                 },
-                expected = """{"format":[{"var":"someString0"},[{"var":"someString0"}]]}"""
+                expected = """{"decimalFormat":[{"var":"someString0"},[{"var":"someString0"}]]}"""
             ),
             JsonLogicTestData(
                 testCase = "format string with elements as params",
                 expression = clientLogic {
-                    format("%s test %d", registryKey("someString0"), registryKey("someString1"))
+                    format("%f test %f", registryKey("someString0"), registryKey("someString1"))
                 },
-                expected = """{"format":["%stest%d",[{"var":"someString0"},{"var":"someString1"}]]}"""
+                expected = """{"decimalFormat":["%f test %f",[{"var":"someString0"},{"var":"someString1"}]]}"""
             ),
             JsonLogicTestData(
-                testCase = "format string with simple types",
+                testCase = "format string with unsupported simple types",
                 expression = clientLogic {
-                    format("%s test %d %f %s", "someString", 100, 3.4567, true)
+                    format("%s test %d %s", "someString", 100, true)
                 },
-                expected = """{"format":["%stest%d%f%s",["someString", 100, 3.4567, true]]}"""
+                expected = """{"decimalFormat":["%s test %d %s",[100]]}"""
             ),
         ).toJsonLogicTestArgumentsStream()
     }
