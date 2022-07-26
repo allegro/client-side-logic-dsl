@@ -7,7 +7,7 @@ import pl.allegro.mobile.logic.operators.JsonLogicTestData
 import pl.allegro.mobile.logic.operators.assertSerializedExpressionMatchesExpected
 import pl.allegro.mobile.logic.operators.toJsonLogicTestArgumentsStream
 
-class FormatOperationTest {
+class DecimalFormatOperationTest {
 
     @ParameterizedTest(name = "[{index}] Format operator - {0}")
     @MethodSource("testData")

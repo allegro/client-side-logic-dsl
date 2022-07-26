@@ -8,28 +8,28 @@ import pl.allegro.mobile.logic.NumberElement
 import pl.allegro.mobile.logic.BooleanElement
 import pl.allegro.mobile.logic.ListOfClientElements
 
-internal interface FormatOperation {
+internal interface DecimalFormatOperation {
     /**
      * Formats text with provided arguments.
      * @receiver Character sequence or client side operation that returns string
      * @param formatString client side data or operation results which will be used as format string
-     * @param args arguments to be inserted into formatted string
+     * @param args floating point arguments to be inserted into formatted string
      * @return format operator, evaluated client side.
      * Operator returns this string with applied format params.
-     * @see: FormatOperationTest
+     * @see: DecimalFormatOperationTest
      */
     @ClientLogicMarker
-    fun format(formatString: String, vararg args: Any) = FormatOperatorFactory().create(StringElement(formatString), args)
+    fun format(formatString: String, vararg args: Any) = DecimalFormatOperatorFactory().create(StringElement(formatString), args)
 
     @ClientLogicMarker
-    fun ClientLogicElement.format(vararg args: Any) = FormatOperatorFactory().create(this, args)
+    fun ClientLogicElement.format(vararg args: Any) = DecimalFormatOperatorFactory().create(this, args)
 }
 
-private class FormatOperatorFactory {
+private class DecimalFormatOperatorFactory {
     fun create(
         formatString: ClientLogicElement,
         args: Array<out Any>
-    ) = ClientLogicOperator.Builder("format")
+    ) = ClientLogicOperator.Builder("decimalFormat")
         .add(formatString)
         .add(args.toElements())
         .build()
@@ -38,9 +38,7 @@ private class FormatOperatorFactory {
         val elementsListBuilder = ListOfClientElements.Builder()
         forEach {
             when (it) {
-                is String -> elementsListBuilder.add(StringElement(it))
                 is Number -> elementsListBuilder.add(NumberElement(it))
-                is Boolean -> elementsListBuilder.add(BooleanElement(it))
                 is ClientLogicElement -> elementsListBuilder.add(it)
             }
         }
