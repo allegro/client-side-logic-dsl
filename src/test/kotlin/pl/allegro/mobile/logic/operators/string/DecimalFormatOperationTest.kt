@@ -21,21 +21,21 @@ class DecimalFormatOperationTest {
             JsonLogicTestData(
                 testCase = "format result of var operation",
                 expression = clientLogic {
-                    registryKey("someString0").format(registryKey("someString0"))
+                    registryKey("someString0").decimalFormat(registryKey("someString0"))
                 },
                 expected = """{"decimalFormat":[{"var":"someString0"},[{"var":"someString0"}]]}"""
             ),
             JsonLogicTestData(
                 testCase = "format string with elements as params",
                 expression = clientLogic {
-                    format("%f test %f", registryKey("someString0"), registryKey("someString1"))
+                    decimalFormat("%f test %f", registryKey("someString0"), registryKey("someString1"))
                 },
                 expected = """{"decimalFormat":["%f test %f",[{"var":"someString0"},{"var":"someString1"}]]}"""
             ),
             JsonLogicTestData(
                 testCase = "format string with unsupported simple types",
                 expression = clientLogic {
-                    format("%s test %d %s", "someString", 100, true, registryKey("someString0"))
+                    decimalFormat("%s test %d %s", "someString", 100, true, registryKey("someString0"))
                 },
                 expected = """{"decimalFormat":["%s test %d %s",[100,{"var":"someString0"}]]}"""
             ),
