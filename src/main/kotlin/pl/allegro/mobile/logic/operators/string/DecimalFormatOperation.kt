@@ -9,15 +9,15 @@ internal interface DecimalFormatOperation {
     /**
      * Formats decimal number with provided length arguments.
      * @receiver Character sequence, number or client side operation that returns one of them.
-     * @param width number of characters in width of formatted element
+     * @param minWidth minimum number of characters in width of formatted element
      * @param decimalPlaces number of decimal places
      * @return decimalFormat operator, evaluated client side.
      * Operator returns this number of string formatted as decimal.
      * @see: DecimalFormatOperationTest
      */
     @ClientLogicMarker
-    fun decimalFormat(element: ClientLogicElement, width: DecimalFormatLength = DecimalFormatLength.Unmodified, decimalPlaces: DecimalFormatLength) =
-        DecimalFormatOperatorFactory().create(element, width, decimalPlaces)
+    fun decimalFormat(element: ClientLogicElement, minWidth: DecimalFormatLength = DecimalFormatLength.Unmodified, decimalPlaces: DecimalFormatLength) =
+        DecimalFormatOperatorFactory().create(element, minWidth, decimalPlaces)
 
     @ClientLogicMarker
     fun ClientLogicElement.formatDecimal(width: DecimalFormatLength = DecimalFormatLength.Unmodified, decimalPlaces: DecimalFormatLength) =

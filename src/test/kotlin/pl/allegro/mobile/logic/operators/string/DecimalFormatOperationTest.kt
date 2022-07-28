@@ -35,7 +35,7 @@ class DecimalFormatOperationTest {
             JsonLogicTestData(
                 testCase = "unmodified width and exact length",
                 expression = clientLogic {
-                    decimalFormat(element = registryKey("someString0"), width = DecimalFormatLength.Unmodified, decimalPlaces = DecimalFormatLength.Exact(7))
+                    decimalFormat(element = registryKey("someString0"), minWidth = DecimalFormatLength.Unmodified, decimalPlaces = DecimalFormatLength.Exact(7))
                 },
                 expected = """{"decimalFormat":["%.7f",{"var":"someString0"}]}"""
             ),
