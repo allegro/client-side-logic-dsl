@@ -19,37 +19,51 @@ class DecimalFormatOperationTest {
         @JvmStatic
         fun testData() = listOf(
             JsonLogicTestData(
+                testCase = "extension, default width and exact length",
+                expression = clientLogic {
+                    registryKey("someString0").formatDecimal(decimalPlaces = DecimalFormatLength.Exact(2))
+                },
+                expected = """{"decimalFormat":["%.2f",{"var":"someString0"}]}"""
+            ),
+            JsonLogicTestData(
                 testCase = "extension, unmodified width and exact length",
                 expression = clientLogic {
-                    registryKey("someString0").formatDecimal(width = FormatLength.Unmodified, decimalPlaces = FormatLength.Exact(2))
+                    registryKey("someString0").formatDecimal(width = DecimalFormatLength.Unmodified, decimalPlaces = DecimalFormatLength.Exact(2))
                 },
                 expected = """{"decimalFormat":["%.2f",{"var":"someString0"}]}"""
             ),
             JsonLogicTestData(
                 testCase = "unmodified width and exact length",
                 expression = clientLogic {
-                    decimalFormat(element = registryKey("someString0"), width = FormatLength.Unmodified, decimalPlaces = FormatLength.Exact(7))
+                    decimalFormat(element = registryKey("someString0"), width = DecimalFormatLength.Unmodified, decimalPlaces = DecimalFormatLength.Exact(7))
+                },
+                expected = """{"decimalFormat":["%.7f",{"var":"someString0"}]}"""
+            ),
+            JsonLogicTestData(
+                testCase = "default width and exact length",
+                expression = clientLogic {
+                    decimalFormat(element = registryKey("someString0"), decimalPlaces = DecimalFormatLength.Exact(7))
                 },
                 expected = """{"decimalFormat":["%.7f",{"var":"someString0"}]}"""
             ),
             JsonLogicTestData(
                 testCase = "extension, exact width and exact length",
                 expression = clientLogic {
-                    registryKey("someString0").formatDecimal(width = FormatLength.Exact(3), decimalPlaces = FormatLength.Exact(0))
+                    registryKey("someString0").formatDecimal(width = DecimalFormatLength.Exact(3), decimalPlaces = DecimalFormatLength.Exact(0))
                 },
                 expected = """{"decimalFormat":["%3.0f",{"var":"someString0"}]}"""
             ),
             JsonLogicTestData(
                 testCase = "extension, unmodified width and unmodified length",
                 expression = clientLogic {
-                    registryKey("someString0").formatDecimal(width = FormatLength.Exact(7), decimalPlaces = FormatLength.Unmodified)
+                    registryKey("someString0").formatDecimal(width = DecimalFormatLength.Exact(7), decimalPlaces = DecimalFormatLength.Unmodified)
                 },
                 expected = """{"decimalFormat":["%7f",{"var":"someString0"}]}"""
             ),
             JsonLogicTestData(
                 testCase = "extension, unmodified width and unmodified length",
                 expression = clientLogic {
-                    registryKey("someString0").formatDecimal(width = FormatLength.Unmodified, decimalPlaces = FormatLength.Unmodified)
+                    registryKey("someString0").formatDecimal(width = DecimalFormatLength.Unmodified, decimalPlaces = DecimalFormatLength.Unmodified)
                 },
                 expected = """{"decimalFormat":["%f",{"var":"someString0"}]}"""
             ),
