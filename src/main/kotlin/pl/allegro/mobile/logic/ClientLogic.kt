@@ -36,6 +36,7 @@ import pl.allegro.mobile.logic.operators.miscelanous.CurrentTimeOperation
 import pl.allegro.mobile.logic.operators.miscelanous.LogOperation
 import pl.allegro.mobile.logic.operators.numeric.BetweenOperation
 import pl.allegro.mobile.logic.operators.numeric.BetweenOrEqualOperation
+import pl.allegro.mobile.logic.operators.numeric.DecimalFormatOperation
 import pl.allegro.mobile.logic.operators.numeric.GreaterOrEqualOperation
 import pl.allegro.mobile.logic.operators.numeric.GreaterThanOperation
 import pl.allegro.mobile.logic.operators.numeric.LessOrEqualOperation
@@ -52,7 +53,6 @@ import pl.allegro.mobile.logic.operators.string.ReplaceOperation
 import pl.allegro.mobile.logic.operators.string.SubstringOperation
 import pl.allegro.mobile.logic.operators.string.ToArrayOperation
 import pl.allegro.mobile.logic.operators.string.TrimOperation
-import pl.allegro.mobile.logic.operators.string.FormatOperation
 import pl.allegro.mobile.logic.operators.string.UppercaseOperation
 
 @ClientLogicMarker
@@ -109,6 +109,7 @@ object ClientLogic :
     LessThanOperation,
     MaxOperation,
     MinOperation,
+    DecimalFormatOperation,
 
     // string
     ConcatenateOperation,
@@ -122,7 +123,6 @@ object ClientLogic :
     ToArrayOperation,
     ReplaceOperation,
     IsBlankOperation,
-    FormatOperation,
 
     // misc
     LogOperation,
