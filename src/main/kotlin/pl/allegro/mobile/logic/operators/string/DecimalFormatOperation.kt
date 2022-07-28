@@ -49,11 +49,11 @@ private class DecimalFormatOperatorFactory {
 
     private fun DecimalFormatLength.toStringSize() = when (this) {
         is DecimalFormatLength.Unmodified -> ""
-        is DecimalFormatLength.Exact      -> size.toString()
+        is DecimalFormatLength.Exact      -> length.toString()
     }
 }
 
 sealed class DecimalFormatLength {
     object Unmodified : DecimalFormatLength()
-    data class Exact(val size: Int) : DecimalFormatLength()
+    data class Exact(val length: Int) : DecimalFormatLength()
 }
