@@ -9,9 +9,9 @@ import pl.allegro.mobile.logic.operators.toJsonLogicTestArgumentsStream
 
 class DecimalFormatOperationTest {
 
-    @ParameterizedTest(name = "[{index}] Format operator - {0}")
+    @ParameterizedTest(name = "[{index}] DecimalFormat operator - {0}")
     @MethodSource("testData")
-    fun `should map format operation to json`(testCaseName: String, jsonLogicTestData: JsonLogicTestData) {
+    fun `should map decimalFormat operation to json`(testCaseName: String, jsonLogicTestData: JsonLogicTestData) {
         jsonLogicTestData.assertSerializedExpressionMatchesExpected(stripWhitespaces = false)
     }
 
@@ -19,25 +19,39 @@ class DecimalFormatOperationTest {
         @JvmStatic
         fun testData() = listOf(
             JsonLogicTestData(
-                testCase = "format result of var operation",
+                testCase = "extension, unmodified width and exact length",
                 expression = clientLogic {
-                    registryKey("someString0").decimalFormat(registryKey("someString0"))
+                    registryKey("someString0").formatDecimal(width = FormatLength.Unmodified, decimalPlaces = FormatLength.Exact(2))
                 },
-                expected = """{"decimalFormat":[{"var":"someString0"},[{"var":"someString0"}]]}"""
+                expected = """{"decimalFormat":["%.2f",{"var":"someString0"}]}"""
             ),
             JsonLogicTestData(
-                testCase = "format string with elements as params",
+                testCase = "unmodified width and exact length",
                 expression = clientLogic {
-                    decimalFormat("%f test %f", registryKey("someString0"), registryKey("someString1"))
+                    decimalFormat(element = registryKey("someString0"), width = FormatLength.Unmodified, decimalPlaces = FormatLength.Exact(7))
                 },
-                expected = """{"decimalFormat":["%f test %f",[{"var":"someString0"},{"var":"someString1"}]]}"""
+                expected = """{"decimalFormat":["%.7f",{"var":"someString0"}]}"""
             ),
             JsonLogicTestData(
-                testCase = "format string with unsupported simple types",
+                testCase = "extension, exact width and exact length",
                 expression = clientLogic {
-                    decimalFormat("%s test %d %s", "someString", 100, true, registryKey("someString0"))
+                    registryKey("someString0").formatDecimal(width = FormatLength.Exact(3), decimalPlaces = FormatLength.Exact(0))
                 },
-                expected = """{"decimalFormat":["%s test %d %s",[100,{"var":"someString0"}]]}"""
+                expected = """{"decimalFormat":["%3.0f",{"var":"someString0"}]}"""
+            ),
+            JsonLogicTestData(
+                testCase = "extension, unmodified width and unmodified length",
+                expression = clientLogic {
+                    registryKey("someString0").formatDecimal(width = FormatLength.Exact(7), decimalPlaces = FormatLength.Unmodified)
+                },
+                expected = """{"decimalFormat":["%7f",{"var":"someString0"}]}"""
+            ),
+            JsonLogicTestData(
+                testCase = "extension, unmodified width and unmodified length",
+                expression = clientLogic {
+                    registryKey("someString0").formatDecimal(width = FormatLength.Unmodified, decimalPlaces = FormatLength.Unmodified)
+                },
+                expected = """{"decimalFormat":["%f",{"var":"someString0"}]}"""
             ),
         ).toJsonLogicTestArgumentsStream()
     }

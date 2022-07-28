@@ -4,44 +4,56 @@ import pl.allegro.mobile.logic.ClientLogicElement
 import pl.allegro.mobile.logic.ClientLogicMarker
 import pl.allegro.mobile.logic.ClientLogicOperator
 import pl.allegro.mobile.logic.StringElement
-import pl.allegro.mobile.logic.NumberElement
-import pl.allegro.mobile.logic.BooleanElement
-import pl.allegro.mobile.logic.ListOfClientElements
 
 internal interface DecimalFormatOperation {
     /**
-     * Formats text with provided arguments.
-     * @receiver Character sequence or client side operation that returns string
-     * @param formatString client side data or operation results which will be used as format string
-     * @param args floating point arguments to be inserted into formatted string
-     * @return format operator, evaluated client side.
-     * Operator returns this string with applied format params.
+     * Formats decimal number with provided length arguments.
+     * @receiver Character sequence, number or client side operation that returns one of them.
+     * @param width number of characters in width of formatted element
+     * @param decimalPlaces number of decimal places
+     * @return decimalFormat operator, evaluated client side.
+     * Operator returns this number of string formatted as decimal.
      * @see: DecimalFormatOperationTest
      */
     @ClientLogicMarker
-    fun decimalFormat(formatString: String, vararg args: Any) = DecimalFormatOperatorFactory().create(StringElement(formatString), args)
+    fun decimalFormat(element: ClientLogicElement, width: FormatLength, decimalPlaces: FormatLength) =
+        DecimalFormatOperatorFactory().create(element, width, decimalPlaces)
 
     @ClientLogicMarker
-    fun ClientLogicElement.decimalFormat(vararg args: Any) = DecimalFormatOperatorFactory().create(this, args)
+    fun ClientLogicElement.formatDecimal(width: FormatLength, decimalPlaces: FormatLength) =
+        DecimalFormatOperatorFactory().create(this, width, decimalPlaces)
 }
 
 private class DecimalFormatOperatorFactory {
     fun create(
-        formatString: ClientLogicElement,
-        args: Array<out Any>
+        element: ClientLogicElement,
+        stringWidth: FormatLength,
+        decimalPlaces: FormatLength
     ) = ClientLogicOperator.Builder("decimalFormat")
-        .add(formatString)
-        .add(args.toElements())
+        .add(resolveFormatString(stringWidth, decimalPlaces))
+        .add(element)
         .build()
 
-    private fun Array<out Any>.toElements(): ListOfClientElements<ClientLogicElement> {
-        val elementsListBuilder = ListOfClientElements.Builder()
-        forEach {
-            when (it) {
-                is Number -> elementsListBuilder.add(NumberElement(it))
-                is ClientLogicElement -> elementsListBuilder.add(it)
-            }
+    private fun resolveFormatString(
+        stringWidth: FormatLength,
+        decimalPlaces: FormatLength
+    ): StringElement {
+        val formatString = if (decimalPlaces is FormatLength.Unmodified) {
+            "%${stringWidth.toStringSize()}f"
+        } else {
+            "%${stringWidth.toStringSize()}.${decimalPlaces.toStringSize()}f"
         }
-        return elementsListBuilder.build()
+
+        return StringElement(formatString)
     }
+
+    private fun FormatLength.toStringSize() = when (this) {
+        is FormatLength.Unmodified -> ""
+        is FormatLength.Exact      -> size.toString()
+    }
+}
+
+sealed class FormatLength {
+    object Unmodified : FormatLength()
+    data class Exact(val size: Int) : FormatLength()
 }
