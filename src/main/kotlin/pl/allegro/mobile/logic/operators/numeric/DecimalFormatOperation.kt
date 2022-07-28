@@ -1,4 +1,4 @@
-package pl.allegro.mobile.logic.operators.string
+package pl.allegro.mobile.logic.operators.numeric
 
 import pl.allegro.mobile.logic.ClientLogicElement
 import pl.allegro.mobile.logic.ClientLogicMarker

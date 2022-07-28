@@ -1,4 +1,4 @@
-package pl.allegro.mobile.logic.operators.string
+package pl.allegro.mobile.logic.operators.numeric
 
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
