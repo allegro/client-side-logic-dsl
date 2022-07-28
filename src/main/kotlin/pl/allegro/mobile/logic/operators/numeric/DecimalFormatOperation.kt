@@ -16,21 +16,26 @@ internal interface DecimalFormatOperation {
      * @see: DecimalFormatOperationTest
      */
     @ClientLogicMarker
-    fun decimalFormat(element: ClientLogicElement, minWidth: DecimalFormatLength = DecimalFormatLength.Unmodified, decimalPlaces: DecimalFormatLength) =
-        DecimalFormatOperatorFactory().create(element, minWidth, decimalPlaces)
+    fun decimalFormat(
+        element: ClientLogicElement,
+        minWidth: DecimalFormatLength = DecimalFormatLength.Unmodified,
+        decimalPlaces: DecimalFormatLength
+    ) = DecimalFormatOperatorFactory().create(element, minWidth, decimalPlaces)
 
     @ClientLogicMarker
-    fun ClientLogicElement.formatDecimal(width: DecimalFormatLength = DecimalFormatLength.Unmodified, decimalPlaces: DecimalFormatLength) =
-        DecimalFormatOperatorFactory().create(this, width, decimalPlaces)
+    fun ClientLogicElement.formatDecimal(
+        minWidth: DecimalFormatLength = DecimalFormatLength.Unmodified,
+        decimalPlaces: DecimalFormatLength
+    ) = DecimalFormatOperatorFactory().create(this, minWidth, decimalPlaces)
 }
 
 private class DecimalFormatOperatorFactory {
     fun create(
         element: ClientLogicElement,
-        stringWidth: DecimalFormatLength,
+        minStringWidth: DecimalFormatLength,
         decimalPlaces: DecimalFormatLength
     ) = ClientLogicOperator.Builder("decimalFormat")
-        .add(resolveFormatString(stringWidth, decimalPlaces))
+        .add(resolveFormatString(minStringWidth, decimalPlaces))
         .add(element)
         .build()
 
