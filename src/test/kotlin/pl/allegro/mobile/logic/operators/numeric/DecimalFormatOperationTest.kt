@@ -83,6 +83,16 @@ class DecimalFormatOperationTest {
                 },
                 expected = """{"decimalFormat":["%f",{"var":"someString0"}]}"""
             ),
+            JsonLogicTestData(
+                testCase = "extension, exact zero width and exact zero decimal places",
+                expression = clientLogic {
+                    registryKey("someString0").formatDecimal(
+                        minWidth = DecimalFormatLength.Exact(0),
+                        decimalPlaces = DecimalFormatLength.Exact(0)
+                    )
+                },
+                expected = """{"decimalFormat":["%.0f",{"var":"someString0"}]}"""
+            )
         ).toJsonLogicTestArgumentsStream()
     }
 }

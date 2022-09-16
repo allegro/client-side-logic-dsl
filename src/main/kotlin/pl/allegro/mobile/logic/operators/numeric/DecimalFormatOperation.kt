@@ -43,22 +43,21 @@ private class DecimalFormatOperatorFactory {
         stringWidth: DecimalFormatLength,
         decimalPlaces: DecimalFormatLength
     ): StringElement {
-        val formatString = if (decimalPlaces is DecimalFormatLength.Unmodified) {
-            "%${stringWidth.toStringSize()}f"
-        } else {
-            "%${stringWidth.toStringSize()}.${decimalPlaces.toStringSize()}f"
-        }
-
+       val formatString = when {
+           (stringWidth is DecimalFormatLength.Exact && stringWidth.width == 0)    -> "%.${decimalPlaces.toStringSize()}f"
+           decimalPlaces is DecimalFormatLength.Unmodified                          -> "%${stringWidth.toStringSize()}f"
+           else                                                                     -> "%${stringWidth.toStringSize()}.${decimalPlaces.toStringSize()}f"
+       }
         return StringElement(formatString)
     }
 
     private fun DecimalFormatLength.toStringSize() = when (this) {
         is DecimalFormatLength.Unmodified -> ""
-        is DecimalFormatLength.Exact      -> length.toString()
+        is DecimalFormatLength.Exact      -> width.toString()
     }
 }
 
 sealed class DecimalFormatLength {
     object Unmodified : DecimalFormatLength()
-    data class Exact(val length: Int) : DecimalFormatLength()
+    data class Exact(val width: Int) : DecimalFormatLength()
 }
