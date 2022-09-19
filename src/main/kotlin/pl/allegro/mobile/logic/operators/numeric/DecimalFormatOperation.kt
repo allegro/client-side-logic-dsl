@@ -39,16 +39,18 @@ private class DecimalFormatOperatorFactory {
         .add(element)
         .build()
 
-    @Suppress("MaxLineLength")
     private fun resolveFormatString(
         stringWidth: DecimalFormatLength,
         decimalPlaces: DecimalFormatLength
     ): StringElement {
-       val formatString = when {
-           (stringWidth is DecimalFormatLength.Exact && stringWidth.width == 0) -> "%.${decimalPlaces.toStringSize()}f"
-           decimalPlaces is DecimalFormatLength.Unmodified                      -> "%${stringWidth.toStringSize()}f"
-           else                                                                 -> "%${stringWidth.toStringSize()}.${decimalPlaces.toStringSize()}f"
-       }
+        val widthSize: () -> String = { stringWidth.toStringSize() }
+        val placesSize: () -> String = { decimalPlaces.toStringSize() }
+
+        val formatString = when {
+           (stringWidth is DecimalFormatLength.Exact && stringWidth.width == 0) -> "%.${placesSize()}f"
+           decimalPlaces is DecimalFormatLength.Unmodified                      -> "%${widthSize()}f"
+           else                                                                 -> "%${widthSize()}.${placesSize()}f"
+        }
         return StringElement(formatString)
     }
 
