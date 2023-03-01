@@ -7,25 +7,25 @@ import pl.allegro.mobile.logic.StringElement
 
 internal interface MatchOperation {
     /**
-     * Check if string match to given regex
+     * Check if a string matches to given regex pattern
      * @receiver Character sequence or client side operation that returns string
-     * @param regex regex which we want to use
-     * @return true/false, depending on if string match to given regex
-     * Returns true or false depending on if string match to given regex
+     * @param regexPattern regex pattern which we want to use
+     * @return match operator, evaluated client side.
+     * Returns true or false depending on if the string matches to given regex pattern.
      * @see: MatchOperationTest
      */
     @ClientLogicMarker
-    fun ClientLogicElement.match(regex: String) =
-        MatchOperatorFactory().create(this, regex)
+    fun ClientLogicElement.match(regexPattern: String) =
+        MatchOperatorFactory().create(this, regexPattern)
 }
 
 private class MatchOperatorFactory {
     fun create(
         element: ClientLogicElement,
-        regex: String
+        regexPattern: String
     ) = ClientLogicOperator.Builder("match")
         .add(element)
-        .add(StringElement(regex))
+        .add(StringElement(regexPattern))
         .build()
 }
 
