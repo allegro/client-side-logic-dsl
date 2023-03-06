@@ -25,14 +25,37 @@ class MatchOperationTest {
                     expression = clientLogic {
                         registryKey("123").match("^[0-9]+$")
                     },
-                    expected = """{"match":[{"var":"123"},"^[0-9]+$"]}"""
+                    expected = """{"match":[{"var":"123"},"^[0-9]+$",{"regexOptions":[]}]}"""
                 ),
                 JsonLogicTestData(
                     testCase = "from key, character specified, default mode",
                     expression = clientLogic {
                         registryKey("123").match("")
                     },
-                    expected = """{"match":[{"var":"123"},""]}"""
+                    expected = """{"match":[{"var":"123"},"",{"regexOptions":[]}]}"""
+                ),
+                JsonLogicTestData(
+                    testCase = "from key, character specified, additional 1 option",
+                    expression = clientLogic {
+                        registryKey("123").match("^[0-9]+$", listOf(RegexOption.IGNORE_CASE))
+                    },
+                    expected = """{"match": [{"var":"123"},"^[0-9]+$", {"regexOptions":"IGNORE_CASE"}]}""" // ???? Ok? zamiast ["IGNORE_CASE"]?
+                ),
+                JsonLogicTestData(
+                    testCase = "from key, character specified, additional 2 options",
+                    expression = clientLogic {
+                        registryKey("123").match(
+                            "^[0-9]+$", listOf(RegexOption.IGNORE_CASE, RegexOption.MULTILINE)
+                        )
+                    },
+                    expected = """{"match": [{"var":"123"},"^[0-9]+$", {"regexOptions":["IGNORE_CASE", "MULTILINE"]}]}"""
+                ),
+                JsonLogicTestData(
+                    testCase = "from key, character specified, additional repeated options",
+                    expression = clientLogic {
+                        registryKey("123").match("^[0-9]+$", listOf(RegexOption.IGNORE_CASE, RegexOption.MULTILINE, RegexOption.IGNORE_CASE, RegexOption.MULTILINE))
+                    },
+                    expected = """{"match": [{"var":"123"},"^[0-9]+$", {"regexOptions":["IGNORE_CASE", "MULTILINE"]}]}"""
                 ),
             ).toJsonLogicTestArgumentsStream()
         }
