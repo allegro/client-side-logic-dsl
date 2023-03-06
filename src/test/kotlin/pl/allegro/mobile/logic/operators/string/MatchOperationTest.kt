@@ -53,7 +53,10 @@ class MatchOperationTest {
                 JsonLogicTestData(
                     testCase = "from key, character specified, additional repeated options",
                     expression = clientLogic {
-                        registryKey("123").match("^[0-9]+$", listOf(RegexOption.IGNORE_CASE, RegexOption.MULTILINE, RegexOption.IGNORE_CASE, RegexOption.MULTILINE))
+                        registryKey("123").match(
+                            "^[0-9]+$",
+                            listOf(RegexOption.IGNORE_CASE, RegexOption.MULTILINE, RegexOption.IGNORE_CASE, RegexOption.MULTILINE)
+                        )
                     },
                     expected = """{"match": [{"var":"123"},"^[0-9]+$", ["IGNORE_CASE", "MULTILINE"]]}"""
                 ),
