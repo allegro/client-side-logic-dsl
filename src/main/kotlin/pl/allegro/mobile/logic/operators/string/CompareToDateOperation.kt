@@ -11,7 +11,7 @@ internal interface  CompareToDateOperation {
      * Compares a string to given string represents the date in proper format.
      * This operation compares the date
      * @receiver Character sequence or client side operation that returns string
-     * @param date date to compare to string represents in current string
+     * @param date date to compare to date represents in current string
      * @return integer interpretation of state. State is between -1 and 1.
      * -1 - passing date is BEFORE the compared date
      * 0 - passing date is EQUALS the compared date
@@ -19,10 +19,10 @@ internal interface  CompareToDateOperation {
      */
     @ClientLogicMarker
     fun ClientLogicElement.compareToDate(date: String) =
-        CompareToDateOparationFactory().create(this,date)
+        CompareToDateOperationFactory().create(this,date)
 }
 
-private class CompareToDateOparationFactory {
+private class CompareToDateOperationFactory {
     fun create(
         element: ClientLogicElement,
         date: String

@@ -9,7 +9,7 @@ import pl.allegro.mobile.logic.operators.toJsonLogicTestArgumentsStream
 import java.util.stream.Stream
 import pl.allegro.mobile.logic.clientLogic
 
-class CompareToDateTest {
+class CompareToDateOperationTest {
 
     @ParameterizedTest(name = "[{index}] COMPARE TO DATE operator - {0}")
     @MethodSource("testData")
@@ -29,7 +29,6 @@ class CompareToDateTest {
                     expected = """{"compareToDate": [{"var": "date"},"2022-02-01"]}"""
                 ),
             ).toJsonLogicTestArgumentsStream()
-
         }
     }
 }
