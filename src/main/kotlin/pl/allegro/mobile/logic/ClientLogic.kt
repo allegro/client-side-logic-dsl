@@ -43,6 +43,7 @@ import pl.allegro.mobile.logic.operators.numeric.LessOrEqualOperation
 import pl.allegro.mobile.logic.operators.numeric.LessThanOperation
 import pl.allegro.mobile.logic.operators.numeric.MaxOperation
 import pl.allegro.mobile.logic.operators.numeric.MinOperation
+import pl.allegro.mobile.logic.operators.string.*
 import pl.allegro.mobile.logic.operators.string.CapitalizeOperation
 import pl.allegro.mobile.logic.operators.string.ConcatenateOperation
 import pl.allegro.mobile.logic.operators.string.ContainsStringOperation
@@ -127,6 +128,7 @@ object ClientLogic :
     IsBlankOperation,
     EncodeOperation,
     MatchOperation,
+    CompareToDateOperation,
 
     // misc
     LogOperation,
