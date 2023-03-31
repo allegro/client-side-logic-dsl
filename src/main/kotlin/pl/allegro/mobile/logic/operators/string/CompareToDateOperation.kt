@@ -12,9 +12,9 @@ internal interface  CompareToDateOperation {
      * @receiver Character sequence or client side operation that returns string
      * @param date date to compare to date represents in current string
      * @return integer interpretation of state. State is between -1 and 1.
-     * 1 - passed date is BEFORE the compared date
-     * 0 - passed date is EQUALS the compared date
      * -1 - passed date is AFTER the compared date
+     * 0 - passed date is EQUALS the compared date
+     * 1 - passed date is BEFORE the compared date
      */
     @ClientLogicMarker
     fun ClientLogicElement.compareToDate(date: String) =
