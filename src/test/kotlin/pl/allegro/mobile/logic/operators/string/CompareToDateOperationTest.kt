@@ -28,6 +28,13 @@ class CompareToDateOperationTest {
                     },
                     expected = """{"compareToDate": [{"var": "date"},"2022-02-01"]}"""
                 ),
+                JsonLogicTestData(
+                    testCase = "",
+                    expression = clientLogic {
+                        registryKey("date").compareToDate(registryKey("date1"))
+                    },
+                    expected = """{"compareToDate": [{"var": "date"},{"var": "date1"}]}"""
+                ),
             ).toJsonLogicTestArgumentsStream()
         }
     }
