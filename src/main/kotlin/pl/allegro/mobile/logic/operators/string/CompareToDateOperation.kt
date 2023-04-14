@@ -25,7 +25,7 @@ internal interface  CompareToDateOperation {
      * Compares a string to given string representing the date in a proper format.
      * This operation compares the date
      * @receiver Character sequence or client side operation that returns string
-     * @param registryKey key represents stored date to compare
+     * @param element key represents client logic element to compare
      * @param precision precision to compare dates
      * @return integer interpretation of state. State is between -1 and 1.
      * -1 - passed date is AFTER the compared date
@@ -33,8 +33,8 @@ internal interface  CompareToDateOperation {
      * 1 - passed date is BEFORE the compared date
      */
     @ClientLogicMarker
-    fun ClientLogicElement.compareToDate(registryKey: ClientLogicElement, precision: ComparePrecision) =
-        CompareToDateOperationFactory().create(this, registryKey, precision)
+    fun ClientLogicElement.compareToDate(element: ClientLogicElement, precision: ComparePrecision) =
+        CompareToDateOperationFactory().create(this, element, precision)
 }
 
 enum class ComparePrecision {
@@ -53,11 +53,11 @@ private class CompareToDateOperationFactory {
 
     fun create(
         element: ClientLogicElement,
-        date: ClientLogicElement,
+        otherElement: ClientLogicElement,
         precision: ComparePrecision
     ) = ClientLogicOperator.Builder("compareToDate")
         .add(element)
-        .add(date)
+        .add(otherElement)
         .add(StringElement(precision.name))
         .build()
 }

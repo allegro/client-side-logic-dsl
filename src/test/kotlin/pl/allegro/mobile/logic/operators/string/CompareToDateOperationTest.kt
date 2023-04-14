@@ -119,7 +119,17 @@ class CompareToDateOperationTest {
                     },
                     expected = """{"compareToDate": [{"var": "date"},{"var": "date1"},"YEAR"]}"""
                 ),
+                JsonLogicTestData(
+                    testCase = "",
+                    expression = clientLogic {
+                        registryKey("date").compareToDate(concat("%s-01-01", registryKey("year") ), ComparePrecision.YEAR)
+                    },
+                    expected = """{"compareToDate": [{"var": "date"},{"cat":[{"var":"year"},"-01-01"]},"YEAR"]}"""
+                ),
             ).toJsonLogicTestArgumentsStream()
         }
     }
 }
+
+
+//registryKey("date").compareToDate(concat("%s-01-01", registryKey("year") ))
