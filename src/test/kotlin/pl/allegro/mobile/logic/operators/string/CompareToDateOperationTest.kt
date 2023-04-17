@@ -130,6 +130,3 @@ class CompareToDateOperationTest {
         }
     }
 }
-
-
-//registryKey("date").compareToDate(concat("%s-01-01", registryKey("year") ))
